@@ -27,6 +27,11 @@ module.exports = {
       loader: "style!css"
     }, {
       test: /\.js$/,
+      loaders: ['react-hot', 'babel-loader?stage=0', 'eslint-loader'],
+      exclude: /node_modules/
+    }, {
+      /*
+      test: /\.js$/,
       loader: 'react-hot',
       exclude: /node_modules/
     }, {
@@ -43,7 +48,7 @@ module.exports = {
       test: /\.js$/,
       loader: 'eslint-loader',
       exclude: /node_modules/
-    }, {
+    }, {*/
       test: /\.json$/,
       loader: 'json-loader'
     }, {
