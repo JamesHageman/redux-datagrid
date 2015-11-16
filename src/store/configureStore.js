@@ -1,16 +1,23 @@
+import { createStore, applyMiddleware, compose } from 'redux';
 import { devTools } from 'redux-devtools';
 import { reduxReactRouter } from 'redux-router';
+import history from './history';
+
 import thunk from 'redux-thunk';
-import createHistory from 'history/lib/createHashHistory';
-import { createStore, applyMiddleware, compose } from 'redux';
+import promiseMiddleware from '../middleware/promiseMiddleware';
+
+
 import logger from './logger';
 import rootReducer from '../reducers';
 
 function configureStore(initialState, routes) {
   const store = compose(
-    applyMiddleware(thunk),
-    reduxReactRouter({ routes, createHistory }),
-    applyMiddleware(logger),
+    applyMiddleware(
+      promiseMiddleware,
+      thunk,
+      logger,
+    ),
+    reduxReactRouter({ routes, history }),
     devTools(),
   )(createStore)(rootReducer, initialState);
 

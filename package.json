@@ -11,7 +11,8 @@
     "build": "NODE_ENV=production webpack -p",
     "cover": "istanbul cover _mocha -- --opts ./mocha.opts src/**/*.test.js",
     "test": "mocha --opts ./mocha.opts src/**/*.test.js",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "lint": "eslint ."
   },
   "keywords": [
     "react",
