@@ -69,7 +69,7 @@ class LoginPage extends Component {
 
 const styles = {
   container: {
-    padding: '20px',
+    padding: 20,
     font: '14px Arial',
   },
   errorMsg: {

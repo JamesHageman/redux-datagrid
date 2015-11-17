@@ -6,7 +6,6 @@ import history from './history';
 import thunk from 'redux-thunk';
 import promiseMiddleware from '../middleware/promiseMiddleware';
 
-
 import logger from './logger';
 import rootReducer from '../reducers';
 
