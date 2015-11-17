@@ -6,5 +6,9 @@
   {
     "Username": "guest",
     "Password": "letmein"
+  },
+  {
+    "Username": "user",
+    "Password": "pass"
   }
 ]
