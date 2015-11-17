@@ -15,7 +15,7 @@ module.exports = {
   },
   output: {
     publicPath: 'http://localhost:8080/',
-    filename: "dist/[name].js"
+    filename: 'dist/[name].js'
   },
   module: {
     preLoaders: [{
@@ -24,31 +24,12 @@ module.exports = {
     }],
     loaders: [{
       test: /\.css$/,
-      loader: "style!css"
+      loader: 'style-loader!css-loader!postcss-loader!cssnext-loader'
     }, {
       test: /\.js$/,
       loaders: ['react-hot', 'babel-loader?stage=0', 'eslint-loader'],
       exclude: /node_modules/
     }, {
-      /*
-      test: /\.js$/,
-      loader: 'react-hot',
-      exclude: /node_modules/
-    }, {
-      test: /\.js$/,
-      loader: 'babel',
-      query: {
-        // https://github.com/label/label-loader#options
-        cacheDirectory: true,
-        presets: ['react', 'stage-0', 'es2015'],
-        plugins: ['transform-class-properties']
-      },
-      exclude: /node_modules/
-    }, {
-      test: /\.js$/,
-      loader: 'eslint-loader',
-      exclude: /node_modules/
-    }, {*/
       test: /\.json$/,
       loader: 'json-loader'
     }, {
