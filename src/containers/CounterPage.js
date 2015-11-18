@@ -39,24 +39,35 @@ class CounterApp extends Component {
     } = this.props;
 
     return (
-      <div>
-        <h1 style={ styles.base }>Counter</h1>
-        <hr />
-        <Counter
-          counter={ counter }
-          increment={ increment }
-          decrement={ decrement }
-        />
-        <button type="button" onClick={ logout }>Logout</button>
+      <div className="m2 border sm-col-12" style={ styles.base }>
+        <div className="p1 border-bottom">
+          <h1>Counter</h1>
+        </div>
+
+        <div className="p1 border-bottom">
+          <Counter
+            counter={ counter }
+            increment={ increment }
+            decrement={ decrement } />
+        </div>
+
+        <div className="p1">
+          <button
+            className="btn btn-primary bg-red"
+            type="button"
+            onClick={ logout }>
+            Logout
+          </button>
+        </div>
       </div>
     );
   }
 }
 
+
 const styles = {
   base: {
-    color: 'blue',
-    fontFamily: 'Arial',
+    width: 350,
   },
 };
 

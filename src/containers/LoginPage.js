@@ -31,8 +31,12 @@ class LoginPage extends Component {
     } = this.props;
 
     const errorStyles = user.get('hasError') === true ?
-      styles.errorMsg :
-      styles.hide;
+      styles.visible :
+      styles.hidden;
+
+    const loadingStyles = user.get('isLoading') === true ?
+      styles.visible :
+      styles.hidden;
 
     const submitForm = (e) => {
       e.preventDefault();
@@ -40,26 +44,46 @@ class LoginPage extends Component {
     };
 
     return (
-      <div style={ styles.container }>
+      <div className="m2 border sm-col-12" style={ styles.base }>
         <form onSubmit={ submitForm }>
-          <h1>Login</h1>
 
-          <div style={ errorStyles }>
+          <div className="p1 border-bottom">
+            <h1>Login</h1>
+          </div>
+
+          <div style={ errorStyles } className="bg-red white p1 bold">
             Invalid Username or Password
           </div>
 
-          <div>
+          <div style={ loadingStyles } className="bg-navy silver p1 bold">
+            Loading...
+          </div>
+
+          <div className="mt1 mr1 ml1 mb2">
             <label htmlFor="txtUsername">Username:</label>
-            <input type="text" id="txtUsername" ref="username" />
+            <input
+              className="block col-12 mb1 field"
+              type="text"
+              id="txtUsername"
+              ref="username" />
           </div>
 
-          <div>
+          <div className="mt1 mr1 ml1 mb2">
             <label htmlFor="txtPassword">Password:</label>
-            <input type="password" id="txtPassword" ref="password" />
+            <input
+              className="block col-12 mb1 field"
+              type="password"
+              id="txtPassword"
+              ref="password" />
           </div>
 
-          <div>
-            <button type="submit"onClick={ submitForm }>Login</button>
+          <div className="mt1 mr1 ml1 mb2">
+            <button
+              className="btn btn-primary"
+              type="submit"
+              onClick={ submitForm }>
+              Login
+            </button>
           </div>
         </form>
       </div>
@@ -68,15 +92,13 @@ class LoginPage extends Component {
 }
 
 const styles = {
-  container: {
-    padding: 20,
-    font: '14px Arial',
+  base: {
+    width: 350,
   },
-  errorMsg: {
-    fontWeight: 'bold',
-    color: 'red',
+  visible: {
+    display: 'block',
   },
-  hide: {
+  hidden: {
     display: 'none',
   },
 };
