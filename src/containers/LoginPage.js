@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { loginUser } from '../actions/user';
 import Radium from 'radium';
 
+import Logo from '../assets/rangleio-logo.svg';
+
 function mapStateToProps(state) {
   return {
     user: state.user,
@@ -46,6 +48,9 @@ class LoginPage extends Component {
     return (
       <div className="m2 border sm-col-12" style={ styles.base }>
         <form onSubmit={ submitForm }>
+          <div className="p1">
+            <img src={ Logo } />
+          </div>
 
           <div className="p1 border-bottom">
             <h1>Login</h1>
