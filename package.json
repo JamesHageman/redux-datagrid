@@ -6,13 +6,14 @@
     "node": "4.x"
   },
   "scripts": {
-    "start": "webpack-dev-server --hot --progress",
-    "clean": "rimraf dist node_modules",
     "build": "NODE_ENV=production webpack -p",
+    "clean": "rimraf dist",
     "cover": "istanbul cover _mocha -- --opts ./mocha.opts src/**/*.test.js",
+    "dev": "webpack-dev-server --hot --progress",
+    "lint": "eslint .",
+    "start": "npm run clean; npm run build; node server.js",
     "test": "mocha --opts ./mocha.opts src/**/*.test.js",
-    "test:watch": "npm run test -- --watch",
-    "lint": "eslint ."
+    "test:watch": "npm run test -- --watch"
   },
   "keywords": [
     "react",
@@ -65,6 +66,7 @@
     "css-loader": "^0.23.0",
     "cssnext-loader": "^1.0.1",
     "postcss-loader": "^0.8.0",
-    "style-loader": "^0.13.0"
+    "style-loader": "^0.13.0",
+    "express": "^4.13.3"
   }
 }
