@@ -1,23 +1,48 @@
-# React-Redux seed for new projects
-Using Babel 5.4.2 and Redux 4.0!
+# react-redux-seed
 
-### Installation
-- Fork repo
-- Run: `npm install`
+> Rangle.io official React + Redux seed
 
-### Running webpack dev server
-`npm start` and load http://localhost:8080/
+## Getting Started
+```bash
+$ git clone https://github.com/rangle/react-redux-seed
+$ npm install
+```
 
-### Running coverage and unit tests
-`npm run cover`
+## npm scripts
 
-### Running unit tests only (without coverage)
-`npm run test`
-or
-`npm run test:watch` to watch for file changes and run tests on file change
+### Dev
+```bash
+$ npm run dev
+```
 
-### Cleaning
-`npm run clean` will remove the dist and node_modules directories
+Open `http://localhost:3000` in your browser.
 
-### Production build
-`npm run build` creates `dist/bundle.js`.
+### Tests
+
+#### Single Run
+```bash
+$ npm run test
+```
+
+#### Watch Files
+```bash
+$ npm run test:watch
+```
+
+#### Coverage
+```bash
+$ npm run cover
+```
+
+### Production
+```bash
+$ npm run start
+```
+
+## License
+
+Copyright (c) 2015 rangle.io
+
+[MIT License][MIT]
+
+[MIT]: ./LICENSE "Mit License"

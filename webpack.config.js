@@ -3,8 +3,7 @@ var webpack = require('webpack');
 
 function getEntrySources(sources) {
   if (process.env.NODE_ENV !== 'production') {
-    sources.push('webpack-dev-server/client?http://localhost:8080');
-    sources.push('webpack/hot/only-dev-server');
+    sources.push('webpack-hot-middleware/client');
   }
 
   return sources;
@@ -13,14 +12,18 @@ function getEntrySources(sources) {
 module.exports = {
   devtool: process.env.NODE_ENV !== 'production' ? 'eval-source-map' : '',
   entry: {
-    bundle: getEntrySources(['./src/index.js'])
+    bundle: getEntrySources(['./src/index'])
   },
   output: {
-    publicPath: 'http://localhost:8080/',
-    filename: 'dist/[name].js'
+    publicPath: '/static/',
+    filename: 'bundle.js',
+    path: path.join(__dirname, 'dist'),
   },
   plugins: process.env.NODE_ENV !== 'production' ?
-    [] :
+    [
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoErrorsPlugin()
+    ] :
     [
       new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.DefinePlugin({

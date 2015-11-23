@@ -9,7 +9,7 @@
     "build": "NODE_ENV=production webpack -p",
     "clean": "rimraf dist",
     "cover": "istanbul cover _mocha -- --opts ./mocha.opts src/**/*.test.js",
-    "dev": "webpack-dev-server --hot --progress",
+    "dev": "node server.js",
     "lint": "eslint .",
     "start": "npm run clean; npm run build; node server.js",
     "test": "mocha --opts ./mocha.opts src/**/*.test.js",
@@ -65,8 +65,10 @@
     "basscss": "^7.0.4",
     "css-loader": "^0.23.0",
     "cssnext-loader": "^1.0.1",
+    "express": "^4.13.3",
     "postcss-loader": "^0.8.0",
     "style-loader": "^0.13.0",
-    "express": "^4.13.3"
+    "webpack-dev-middleware": "^1.2.0",
+    "webpack-hot-middleware": "^2.5.0"
   }
 }
