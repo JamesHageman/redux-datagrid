@@ -12,7 +12,7 @@
     "dev": "node server.js",
     "lint": "eslint .",
     "start": "npm run clean; npm run build; node server.js",
-    "test": "mocha --opts ./mocha.opts src/**/*.test.js",
+    "test": "npm run lint; mocha --opts ./mocha.opts src/**/*.test.js",
     "test:watch": "npm run test -- --watch"
   },
   "keywords": [
