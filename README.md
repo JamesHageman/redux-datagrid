@@ -1,5 +1,5 @@
 # React-Redux seed for new projects
-Using Babel 6.0 and Redux 4.0!
+Using Babel 5.4.2 and Redux 4.0!
 
 ### Installation
 - Fork repo
