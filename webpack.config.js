@@ -15,7 +15,7 @@ module.exports = {
     bundle: getEntrySources(['./src/index'])
   },
   output: {
-    publicPath: '/static/',
+    publicPath: '/dist/',
     filename: 'bundle.js',
     path: path.join(__dirname, 'dist'),
   },
