@@ -9,6 +9,8 @@ const config = require('./webpack.config');
 const compiler = webpack(config);
 
 if (process.env.NODE_ENV !== 'production') {
+  console.log('Bundling webpack... Please wait.');
+
   app.use(require('webpack-dev-middleware')(compiler, {
     publicPath: config.output.publicPath
   }));
@@ -16,13 +18,13 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
-app.use('/static', express.static('static'));
+app.use('/dist', express.static('dist'));
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(PORT, 'localhost', function(err) {
+app.listen(PORT, function(err) {
   if (err) {
     console.log(err);
     return;
