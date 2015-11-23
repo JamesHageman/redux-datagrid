@@ -6,14 +6,15 @@
     "node": "4.x"
   },
   "scripts": {
+    "postinstall": "npm run clean; npm run build;",
     "build": "NODE_ENV=production webpack -p",
     "clean": "rimraf dist",
     "cover": "istanbul cover _mocha -- --opts ./mocha.opts src/**/*.test.js",
     "dev": "node server.js",
     "lint": "eslint .",
-    "start": "npm run clean; npm run build; node server.js",
     "test": "npm run lint; mocha --opts ./mocha.opts src/**/*.test.js",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "start": "NODE_ENV=production node server.js"
   },
   "keywords": [
     "react",
@@ -66,6 +67,7 @@
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.6",
-    "webpack": "^1.12.2"
+    "webpack": "^1.12.2",
+    "winston": "^2.1.1"
   }
 }
