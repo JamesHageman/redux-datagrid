@@ -12,7 +12,7 @@
     "cover": "istanbul cover _mocha -- --opts ./mocha.opts src/**/*.test.js",
     "dev": "node server.js",
     "lint": "eslint .",
-    "test": "npm run lint; mocha --opts ./mocha.opts src/**/*.test.js",
+    "test": "npm run lint && mocha --opts ./mocha.opts src/**/*.test.js",
     "test:watch": "npm run test -- --watch",
     "start": "NODE_ENV=production node server.js"
   },
