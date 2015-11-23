@@ -3,15 +3,17 @@
 const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
+const winston = require('winston');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const DOMAIN = '0.0.0.0';
 
 const config = require('./webpack.config');
 const compiler = webpack(config);
 
 if (process.env.NODE_ENV !== 'production') {
-  console.log('Bundling webpack... Please wait.');
+  winston.info('Bundling webpack... Please wait.');
 
   app.use(require('webpack-dev-middleware')(compiler, {
     publicPath: config.output.publicPath,
@@ -28,9 +30,9 @@ app.get('/', (req, res) => {
 
 app.listen(PORT, (err) => {
   if (err) {
-    console.log(err);
+    winston.error(err);
     return;
   }
 
-  console.log(`Listening at http://localhost:${ PORT }`);
+  winston.info(`Listening at http://${ DOMAIN }:${ PORT }`);
 });
