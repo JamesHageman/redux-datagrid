@@ -1,4 +1,5 @@
 import assert from 'assert';
+import fireAction from '../utils/fireAction';
 import counterReducer from './counter';
 import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../constants';
 import { Map } from 'immutable';
@@ -15,7 +16,7 @@ describe('counter reducer', () => {
   describe('on INCREMENT_COUNTER', () => {
     it('should increment state.count', () => {
       const previousValue = state.get('count');
-      state = fireAction(INCREMENT_COUNTER, state);
+      state = fireAction(counterReducer, state, INCREMENT_COUNTER);
       assert.strictEqual(previousValue + 1, state.get('count'));
     });
   });
@@ -23,14 +24,8 @@ describe('counter reducer', () => {
   describe('on DECREMENT_COUNTER', () => {
     it('should decrement state.count', () => {
       const previousValue = state.get('count');
-      state = fireAction(DECREMENT_COUNTER, state);
+      state = fireAction(counterReducer, state, DECREMENT_COUNTER);
       assert.strictEqual(previousValue - 1, state.get('count'));
     });
   });
 });
-
-function fireAction(actionType, currentState) {
-  return counterReducer(currentState, {
-    type: actionType,
-  });
-}
