@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import jsdom from 'jsdom';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import Input from '../components/ui/Input';
+import Input from '../../../src/components/ui/Input';
 
 describe('Input', () => {
   beforeEach(() => {

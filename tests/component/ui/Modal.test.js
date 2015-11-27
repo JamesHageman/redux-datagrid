@@ -4,7 +4,7 @@ import jsdom from 'jsdom';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Modal from './Modal';
+import Modal from '../../../src/components/ui/Modal';
 
 describe('Modal Component', () => {
   beforeEach(() => {

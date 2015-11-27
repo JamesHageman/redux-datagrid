@@ -1,13 +1,13 @@
 import assert from 'assert';
-import fireAction from '../utils/fireAction';
-import sessionReducer from './session';
+import fireAction from '../../src/utils/fireAction';
+import sessionReducer from '../../src/reducers/session';
 
 import {
   LOGIN_USER_PENDING,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
   LOGOUT_USER,
-} from '../constants';
+} from '../../src/constants/index';
 
 import { Map } from 'immutable';
 

@@ -1,7 +1,7 @@
 import assert from 'assert';
-import fireAction from '../utils/fireAction';
-import counterReducer from './counter';
-import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../constants';
+import fireAction from '../../src/utils/fireAction';
+import counterReducer from '../../src/reducers/counter';
+import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../../src/constants/index';
 import { Map } from 'immutable';
 
 let state = counterReducer(undefined, {});
