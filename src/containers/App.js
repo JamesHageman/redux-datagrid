@@ -26,14 +26,15 @@ function mapDispatchToProps(dispatch) {
 }
 
 const App = ({ children, session, login, logout }) => {
-  const isLoggedIn = session.get('token') !== null;
+  const token = session.get('token', false);
+  const isLoggedIn = token && token !== null && typeof token !== 'undefined';
 
   return (
     <div>
       <LoginModal
         onSubmit={ login }
-        isPending={ session.get('isLoading') }
-        hasError={ session.get('hasError') }
+        isPending={ session.get('isLoading', false) }
+        hasError={ session.get('hasError', false) }
         isVisible={ !isLoggedIn } />
       <Navigator>
         <div className="flex flex-auto">
@@ -49,7 +50,7 @@ const App = ({ children, session, login, logout }) => {
         </div>
         <div className="flex flex-end">
           <NavigatorItem isVisible={ isLoggedIn } className="p1 bold">
-            { `${ session.getIn(['user', 'firstName']) } ${ session.getIn(['user', 'lastName']) } ` }
+            { `${ session.getIn(['user', 'firstName'], '') } ${ session.getIn(['user', 'lastName'], '') } ` }
           </NavigatorItem>
           <NavigatorItem isVisible={ isLoggedIn }>
             <Button onClick={ logout } className="bg-red white">

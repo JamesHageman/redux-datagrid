@@ -61,6 +61,7 @@
     "redux": "^3.0.4",
     "redux-devtools": "^2.1.0",
     "redux-form": "^3.0.11",
+    "redux-localstorage": "^0.4.0",
     "redux-logger": "^2.0.4",
     "redux-router": "^1.0.0-beta3",
     "redux-thunk": "^1.0.0",

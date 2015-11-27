@@ -1,13 +1,11 @@
 import React from 'react';
 
-const Content = ({ children, isVisible }) => {
-  const visibleClass = isVisible ? 'block' : 'hide';
-
+const Content = ({ children, style = {}, isVisible }) => {
   return (
     <div
-      className={ `mt3 p1 ${ visibleClass }` }
-      style={{ ...styles.base, styles }}>
-      { children }
+      className={ `mt3 p1` }
+      style={{ ...styles.base, style }}>
+      { isVisible ? children : null }
     </div>
   );
 };
