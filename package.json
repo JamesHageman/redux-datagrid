@@ -10,7 +10,7 @@
     "build": "NODE_ENV=production webpack -p",
     "clean": "rimraf dist coverage",
     "cover": "istanbul cover _mocha -- --opts ./mocha.opts 'src/tests/*.test.js'",
-    "dev": "node server.js",
+    "dev": "nodemon server.js",
     "lint": "eslint .",
     "test": "npm run lint && mocha --opts ./mocha.opts 'src/tests/*.test.js'",
     "test:watch": "mocha --opts ./mocha.opts 'src/tests/*.test.js' --watch",
@@ -30,6 +30,7 @@
     "istanbul": "^0.4.0",
     "jsdom": "^7.0.2",
     "mocha": "^2.3.3",
+    "nodemon": "^1.8.1",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-dev-server": "^1.12.1",
     "webpack-hot-middleware": "^2.5.0"
