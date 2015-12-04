@@ -12,9 +12,9 @@
     "cover": "istanbul cover _mocha -- --opts ./mocha.opts 'src/tests/*.test.js'",
     "dev": "nodemon server.js",
     "lint": "eslint .",
-    "test": "npm run lint && mocha --opts ./mocha.opts 'src/tests/*.test.js'",
-    "test:watch": "mocha --opts ./mocha.opts 'src/tests/*.test.js' --watch",
-    "start": "NODE_ENV=production node server.js"
+    "cover": "istanbul cover -x '*.test.js' _mocha -- --opts ./tests/mocha.opts tests/**/*.js src/**/*.js && istanbul check-coverage --lines=70",
+    "test": "npm run lint && mocha --opts ./tests/mocha.opts && npm run cover",
+    "test:watch": "mocha --opts ./tests/mocha.opts --watch"
   },
   "keywords": [
     "react",
@@ -66,6 +66,7 @@
     "redux-router": "1.0.0-beta5",
     "redux-thunk": "1.0.0",
     "rimraf": "2.4.3",
+    "require-hacker": "2.1.2",
     "source-map-loader": "0.1.5",
     "style-loader": "0.13.0",
     "url-loader": "0.5.6",
