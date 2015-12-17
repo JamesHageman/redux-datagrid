@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 function getEntrySources(sources) {
   if (process.env.NODE_ENV !== 'production') {
@@ -13,6 +14,10 @@ const basePlugins = [
   new webpack.DefinePlugin({
     __DEV__: process.env.NODE_ENV !== 'production',
     __PRODUCTION__: process.env.NODE_ENV === 'production',
+  }),
+  new HtmlWebpackPlugin({
+    template: './index.html',
+    inject: 'body',
   }),
 ];
 
@@ -40,8 +45,10 @@ module.exports = {
     bundle: getEntrySources(['./src/index']),
   },
   output: {
-    publicPath: '/dist/',
-    filename: 'bundle.js',
+    publicPath: '/',
+    filename: process.env.NODE_ENV !== 'production' ?
+      'bundle.js' :
+      '[name].[hash].js',
     path: path.join(__dirname, 'dist'),
   },
   plugins: plugins,
