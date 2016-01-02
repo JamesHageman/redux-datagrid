@@ -10,10 +10,11 @@
     "build": "npm run clean; NODE_ENV=production webpack -p",
     "clean": "rimraf dist coverage",
     "cover": "istanbul cover -x '*.test.js' _mocha -- --opts ./tests/mocha.opts tests/**/*.js src/**/*.js && istanbul check-coverage --lines=70",
-    "dev": "nodemon server.js",
+    "dev": "NODE_ENV=development nodemon server.js",
     "lint": "eslint .",
     "test": "npm run lint && mocha --opts ./tests/mocha.opts && npm run cover",
-    "test:watch": "mocha --opts ./tests/mocha.opts --watch"
+    "test:watch": "mocha --opts ./tests/mocha.opts --watch",
+    "start": "NODE_ENV=production node server.js"
   },
   "keywords": [
     "react",
@@ -31,7 +32,6 @@
     "mocha": "2.3.3",
     "nodemon": "1.8.1",
     "webpack-dev-middleware": "1.2.0",
-    "webpack-dev-server": "1.12.1",
     "webpack-hot-middleware": "2.5.0"
   },
   "dependencies": {
