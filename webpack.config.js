@@ -16,7 +16,7 @@ const basePlugins = [
     __PRODUCTION__: process.env.NODE_ENV === 'production',
   }),
   new HtmlWebpackPlugin({
-    template: './index.html',
+    template: './src/index.html',
     inject: 'body',
   }),
 ];
@@ -36,22 +36,26 @@ const prodPlugins = [
 ];
 
 const plugins = basePlugins
-  .concat(process.env.NODE_ENV === 'production' ? prodPlugins : devPlugins);
-
+  .concat(process.env.NODE_ENV === 'production' ? prodPlugins : [])
+  .concat(process.env.NODE_ENV === 'development' ? devPlugins : []);
 
 module.exports = {
-  devtool: process.env.NODE_ENV !== 'production' ? 'eval-source-map' : '',
   entry: {
-    bundle: getEntrySources(['./src/index']),
+    app: getEntrySources(['./src/index.js']),
   },
+
   output: {
-    publicPath: '/',
-    filename: process.env.NODE_ENV !== 'production' ?
-      'bundle.js' :
-      '[name].[hash].js',
     path: path.join(__dirname, 'dist'),
+    filename: '[name].[hash].js',
+    publicPath: '/',
+    sourceMapFilename: '[name].[hash].js.map',
+    chunkFilename: '[id].chunk.js',
   },
+
+  devtool: 'source-map',
+
   plugins: plugins,
+
   module: {
     preLoaders: [
       {
