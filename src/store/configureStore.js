@@ -1,10 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
-import { reduxReactRouter } from 'redux-router';
 import persistState from 'redux-localstorage';
-
-import history from './history';
-import routes from './routes';
 import thunk from 'redux-thunk';
 import promiseMiddleware from '../middleware/promiseMiddleware';
 import logger from './logger';
@@ -26,10 +22,6 @@ function configureStore(initialState) {
   __DEV__
   ? applyMiddleware(promiseMiddleware, thunk, logger)
   : applyMiddleware(promiseMiddleware, thunk),
-    reduxReactRouter({
-      routes,
-      history,
-    }),
     persistState('session', storageConfig)
   )(createStore)(rootReducer, initialState);
 
