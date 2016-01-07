@@ -28,3 +28,8 @@ node_modules
 
 # Build directory
 dist
+
+# Editor temporary files
+*~
+\#*#
+.#*

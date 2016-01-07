@@ -17,7 +17,7 @@ describe('counter reducer', () => {
     it('should increment state.count', () => {
       const previousValue = state.get('count');
       state = fireAction(counterReducer, state, INCREMENT_COUNTER);
-      assert.strictEqual(previousValue + 1, state.get('count'));
+      assert.strictEqual(state.get('count'), previousValue + 1);
     });
   });
 
@@ -25,7 +25,7 @@ describe('counter reducer', () => {
     it('should decrement state.count', () => {
       const previousValue = state.get('count');
       state = fireAction(counterReducer, state, DECREMENT_COUNTER);
-      assert.strictEqual(previousValue - 1, state.get('count'));
+      assert.strictEqual(state.get('count'), previousValue - 1);
     });
   });
 });
