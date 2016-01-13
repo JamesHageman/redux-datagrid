@@ -68,6 +68,14 @@ const LoginForm = (props) => {
   );
 };
 
+LoginForm.propTypes = {
+  handleSubmit: React.PropTypes.func.isRequired,
+  resetForm: React.PropTypes.func.isRequired,
+  isPending: React.PropTypes.bool.isRequired,
+  hasError: React.PropTypes.bool.isRequired,
+  fields: React.PropTypes.object.isRequired,
+};
+
 export default reduxForm({
   form: 'login',
   fields: [

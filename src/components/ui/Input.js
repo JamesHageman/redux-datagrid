@@ -2,9 +2,9 @@ import React from 'react';
 
 const Input = (props) => {
   const {
-    type = 'text',
-    style = {},
-    placeholder = '',
+    type,
+    style,
+    placeholder,
     fieldDefinition,
   } = props;
 
@@ -21,5 +21,19 @@ const Input = (props) => {
 const styles = {
   base: {},
 };
+
+Input.propTypes = {
+  type: React.PropTypes.string,
+  style: React.PropTypes.object,
+  placeholder: React.PropTypes.string,
+  fieldDefinition: React.PropTypes.object.isRequired,
+};
+
+Input.defaultProps = {
+  type: 'text',
+  style: {},
+  placeholder: '',
+};
+
 
 export default Input;
