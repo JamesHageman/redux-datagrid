@@ -24,4 +24,19 @@ const styles = {
   base: {},
 };
 
+Button.propTypes = {
+  children: React.PropTypes.string.isRequired,
+  className: React.PropTypes.string,
+  style: React.PropTypes.object,
+  type: React.PropTypes.string,
+  onClick: React.PropTypes.func,
+};
+
+Button.defaultProps = {
+  className: '',
+  type: 'button',
+  style: {},
+};
+
+
 export default Button;
