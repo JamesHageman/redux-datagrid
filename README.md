@@ -3,10 +3,9 @@
 > Rangle.io official React + Redux starter
 
 ## Getting Started
-```bash
-$ git clone https://github.com/rangle/react-redux-starter
-$ npm install
-```
+
+Use our [starter script](https://www.npmjs.com/package/rangle-starter), with
+`react-redux-starter` as the `techStack` argument.
 
 ## npm scripts
 
@@ -36,7 +35,7 @@ $ npm run cover
 
 ### Production
 ```bash
-$ npm run start
+$ npm start
 ```
 
 ## License
