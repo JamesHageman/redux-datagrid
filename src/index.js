@@ -1,25 +1,21 @@
-import './styles/styles.css';
-
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { syncReduxAndRouter } from 'redux-simple-router';
-import { Router } from 'react-router';
-import history from './store/history';
+import { Router, browserHistory } from 'react-router';
 import routes from './store/routes';
 import configureStore from './store/configureStore';
+import 'basscss/css/basscss.css'; // Global styles
 
 const store = configureStore({});
-syncReduxAndRouter(history, store);
+
 
 ReactDOM.render(
   <div>
     <Provider store={ store }>
-      <Router history={ history}>
+      <Router history={ browserHistory }>
         { routes }
       </Router>
     </Provider>
   </div>,
   document.getElementById('root')
 );
-
