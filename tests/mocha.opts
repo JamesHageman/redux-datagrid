@@ -1,3 +1,0 @@
---require ./tests/entry.js
---compilers js:babel-core/register
-tests/**/*.test.js src/**/*.test.js
