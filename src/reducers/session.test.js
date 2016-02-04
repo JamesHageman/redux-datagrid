@@ -1,6 +1,6 @@
 import assert from 'assert';
-import fireAction from '../../src/utils/fireAction';
-import sessionReducer from '../../src/reducers/session';
+import fireAction from '../utils/fireAction';
+import sessionReducer from '../reducers/session';
 
 import {
   LOGIN_USER_PENDING,

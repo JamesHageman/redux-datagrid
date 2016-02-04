@@ -4,7 +4,7 @@ import jsdom from 'jsdom';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Modal from '../../../src/components/ui/Modal';
+import Modal from './Modal';
 
 describe('Modal Component', () => {
   beforeEach(() => {
@@ -23,4 +23,3 @@ describe('Modal Component', () => {
     assert(modal.childNodes[0].innerHTML === 'hello world');
   });
 });
-
