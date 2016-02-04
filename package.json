@@ -2,30 +2,36 @@
   "name": "react-redux-starter",
   "version": "0.1.0",
   "description": "A boiler-plate setup for React/Redux applications",
+  "license": "MIT",
   "engines": {
     "node": "4.x"
   },
   "scripts": {
-    "postinstall": "npm run clean; npm run build;",
-    "build": "npm run clean; NODE_ENV=production webpack -p",
+    "postinstall": "npm run build;",
+    "prebuild": "npm run clean",
+    "build": "NODE_ENV=production webpack -p",
     "clean": "rimraf dist coverage",
-    "cover": "babel-node ./node_modules/istanbul/lib/cli cover --report html _mocha -- --opts ./test/mocha.opts src/**/*.js",
+    "start": "NODE_ENV=production node server.js",
     "dev": "NODE_ENV=development nodemon server.js",
-    "check-coverage": "istanbul check-coverage --lines=69",
     "lint": "eslint .",
     "test": "npm run lint && npm run cover && npm run check-coverage",
-    "test:watch": "mocha --opts ./test/mocha.opts --watch",
-    "start": "NODE_ENV=production node server.js"
+    "test:watch": "babel-node ./node_modules/mocha/bin/_mocha --opts ./test/mocha.opts --watch",
+    "cover": "babel-node ./node_modules/istanbul/lib/cli cover --report html _mocha -- --opts ./test/mocha.opts src/**/*.js",
+    "check-coverage": "istanbul check-coverage --lines=69"
   },
   "keywords": [
     "react",
-    "redux"
+    "redux",
+    "starter",
+    "seed"
   ],
   "repository": {
     "type": "git",
     "url": "git://github.com/rangle/react-redux-starter.git"
   },
-  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rangle/rangle-starter/issues"
+  },
   "devDependencies": {
     "babel": "^6.3.26",
     "babel-cli": "^6.4.5",
