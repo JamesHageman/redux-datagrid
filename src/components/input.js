@@ -1,22 +1,18 @@
 import React from 'react';
 
-const Input = (props) => {
-  const {
-    type,
-    style,
-    placeholder,
-    fieldDefinition,
-  } = props;
-
-  return (
-    <input
-      className="block col-12 mb1 field"
-      style={{ ...styles.base, ...style }}
-      type={ type }
-      placeholder={ placeholder }
-      { ...fieldDefinition } />
-  );
-};
+const Input = ({
+  type,
+  style,
+  placeholder,
+  fieldDefinition,
+}) => (
+  <input
+    className="block col-12 mb1 field"
+    style={{ ...styles.base, ...style }}
+    type={ type }
+    placeholder={ placeholder }
+    { ...fieldDefinition } />
+);
 
 const styles = {
   base: {},
@@ -34,6 +30,5 @@ Input.defaultProps = {
   style: {},
   placeholder: '',
 };
-
 
 export default Input;

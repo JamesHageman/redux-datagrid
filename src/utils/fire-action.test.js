@@ -1,4 +1,4 @@
-import fireAction from './fireAction';
+import fireAction from './fire-action';
 import assert from 'assert';
 
 describe('fireAction', () => {

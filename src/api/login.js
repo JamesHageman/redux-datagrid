@@ -1,4 +1,4 @@
-import usersMock from './mock/users.json';
+import usersMock from './mock/users';
 
 export function login(username, password) {
   return new Promise((resolve, reject) => {

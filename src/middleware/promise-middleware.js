@@ -1,4 +1,4 @@
-import isPromise from '../utils/isPromise';
+import isPromise from '../utils/is-promise';
 
 export default function promiseMiddleware({ dispatch }) {
   return next => action => {
