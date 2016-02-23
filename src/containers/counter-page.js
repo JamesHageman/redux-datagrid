@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 
 import { increment, decrement } from '../actions/counter';
 
-import Counter from '../components/counter/Counter';
-import Container from '../components/ui/Container';
-import Column from '../components/ui/Column';
+import Counter from '../components/counter';
+import Container from '../components/container';
+import Column from '../components/column';
 
 function mapStateToProps(state) {
   return {
