@@ -8,7 +8,6 @@ import 'basscss/css/basscss.css'; // Global styles
 
 const store = configureStore({});
 
-
 ReactDOM.render(
   <div>
     <Provider store={ store }>
