@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const proxy = require('./server/webpack-dev-proxy');
 
 function getEntrySources(sources) {
   if (process.env.NODE_ENV !== 'production') {
@@ -23,7 +24,6 @@ const basePlugins = [
 ];
 
 const devPlugins = [
-  new webpack.HotModuleReplacementPlugin(),
   new webpack.NoErrorsPlugin(),
 ];
 
@@ -66,38 +66,24 @@ module.exports = {
   },
 
   devtool: 'source-map',
-
   plugins: plugins,
+
+  devServer: {
+    historyApiFallback: { index: '/' },
+    proxy: proxy(),
+  },
 
   module: {
     preLoaders: [
-      {
-        test: /\.js$/,
-        loader: 'source-map-loader',
-      },
+      { test: /\.js$/, loader: 'source-map-loader' },
+      { test: /\.js$/, loader: 'eslint-loader' },
     ],
     loaders: [
-      {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader!postcss-loader!cssnext-loader',
-      },
-      {
-        test: /\.js$/,
-        loaders: ['react-hot', 'babel', 'eslint-loader'],
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader',
-      },
-      {
-        test: /\.(png|jpg|jpeg|gif|svg)$/,
-        loader: 'url-loader?prefix=img/&limit=5000',
-      },
-      {
-        test: /\.(woff|woff2|ttf|eot)$/,
-        loader: 'url-loader?prefix=font/&limit=5000',
-      },
+      { test: /\.css$/, loader: 'style-loader!css-loader!postcss-loader!cssnext-loader' },
+      { test: /\.js$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
+      { test: /\.json$/, loader: 'json-loader' },
+      { test: /\.(png|jpg|jpeg|gif|svg)$/, loader: 'url-loader?prefix=img/&limit=5000' },
+      { test: /\.(woff|woff2|ttf|eot)$/, loader: 'url-loader?prefix=font/&limit=5000' },
     ],
   },
 };

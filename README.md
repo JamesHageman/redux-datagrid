@@ -14,7 +14,21 @@ Use our [starter script](https://www.npmjs.com/package/rangle-starter), with
 $ npm run dev
 ```
 
-Open `http://localhost:3000` in your browser.
+This runs a development mode server with live reload etc.
+
+Open `http://localhost:8080` in your browser.
+
+### Production
+
+```bash
+npm run build
+npm start
+```
+
+This runs a production-ready express server that serves up a bundled and
+minified version of the client.
+
+Open `http://localhost:8080` in your browser.
 
 ### Tests
 
@@ -33,10 +47,13 @@ $ npm run test:watch
 $ npm run cover
 ```
 
-### Production
-```bash
-$ npm start
-```
+#### Connecting to remote APIs
+
+Both the devmode and production servers provide a way to proxy requests to
+remote HTTP APIs.  This can be useful for working around CORS issues when
+developing your software.
+
+Edit [this file](server/proxy-config.js) to mount such APIs at a given path.
 
 ## Improvements
 
