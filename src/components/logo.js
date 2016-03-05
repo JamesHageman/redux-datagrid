@@ -8,6 +8,10 @@ const Logo = ({ style = {} }) => (
     alt="Rangle.io" />
 );
 
+Logo.propTypes = {
+  style: React.PropTypes.object,
+};
+
 const styles = {
   base: {
     width: 128,

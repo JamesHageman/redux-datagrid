@@ -8,6 +8,10 @@ const Navigator = ({ children }) => (
   </div>
 );
 
+Navigator.propTypes = {
+  children: React.PropTypes.node,
+};
+
 const styles = {
   base: {
     height: '10rem',

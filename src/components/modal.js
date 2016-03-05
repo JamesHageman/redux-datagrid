@@ -12,6 +12,12 @@ const Modal = ({ isVisible, children, style = {} }) => {
   );
 };
 
+Modal.propTypes = {
+  isVisible: React.PropTypes.bool,
+  children: React.PropTypes.node,
+  style: React.PropTypes.object,
+};
+
 const styles = {
   base: {
     backgroundColor: 'rgba(0, 0, 0, 0.25)',

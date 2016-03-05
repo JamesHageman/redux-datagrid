@@ -12,6 +12,12 @@ const NavigatorItem = ({ children, isVisible = true, className = '' }) => {
   );
 };
 
+NavigatorItem.propTypes = {
+  children: React.PropTypes.node,
+  isVisible: React.PropTypes.bool,
+  className: React.PropTypes.string,
+};
+
 const styles = {
   base: {},
 };

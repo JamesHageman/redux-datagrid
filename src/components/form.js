@@ -12,6 +12,12 @@ const Form = ({ children, style = {}, handleSubmit }) => (
   </form>
 );
 
+Form.propTypes = {
+  children: React.PropTypes.node,
+  style: React.PropTypes.object,
+  handleSubmit: React.PropTypes.func,
+};
+
 const styles = {
   base: {},
 };

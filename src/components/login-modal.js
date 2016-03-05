@@ -17,6 +17,13 @@ const LoginModal = ({ isVisible, isPending, hasError, onSubmit }) => (
   </Modal>
 );
 
+LoginModal.propTypes = {
+  isVisible: React.PropTypes.bool,
+  isPending: React.PropTypes.bool,
+  hasError: React.PropTypes.bool,
+  onSubmit: React.PropTypes.func,
+};
+
 const styles = {
   base: {
   },

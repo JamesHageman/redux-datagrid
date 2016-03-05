@@ -6,6 +6,11 @@ const FormLabel = ({ children, style = {} }) => (
   </label>
 );
 
+FormLabel.propTypes = {
+  children: React.PropTypes.node,
+  style: React.PropTypes.object,
+};
+
 const styles = {
   base: {},
 };
