@@ -12,6 +12,13 @@ const FormError = ({ children, isVisible, style = {}, className = ''}) => {
   );
 };
 
+FormError.propTypes = {
+  children: React.PropTypes.node,
+  isVisible: React.PropTypes.bool,
+  style: React.PropTypes.object,
+  className: React.PropTypes.string,
+};
+
 const styles = {
   base: {},
 };

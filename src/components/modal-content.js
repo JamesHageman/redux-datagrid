@@ -10,6 +10,12 @@ const ModalContent = ({ children, style = {}, className = '' }) => {
   );
 };
 
+ModalContent.propTypes = {
+  children: React.PropTypes.node,
+  style: React.PropTypes.object,
+  className: React.PropTypes.string,
+};
+
 const styles = {
   base: {
     width: '25%',

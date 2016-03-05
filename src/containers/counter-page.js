@@ -35,6 +35,12 @@ const CounterPage = ({ counter, increaseCounter, decreaseCounter }) => {
   );
 };
 
+CounterPage.propTypes = {
+  counter: React.PropTypes.number,
+  increaseCounter: React.PropTypes.func,
+  decreaseCounter: React.PropTypes.func,
+};
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps

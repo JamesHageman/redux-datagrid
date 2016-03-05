@@ -21,7 +21,7 @@ const styles = {
 };
 
 Button.propTypes = {
-  children: React.PropTypes.string.isRequired,
+  children: React.PropTypes.node.isRequired,
   className: React.PropTypes.string,
   style: React.PropTypes.object,
   type: React.PropTypes.string,

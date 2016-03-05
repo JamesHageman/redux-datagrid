@@ -27,6 +27,12 @@ const Counter = ({ counter, increment, decrement }) => (
   </div>
 );
 
+Counter.propTypes = {
+  counter: React.PropTypes.number,
+  increment: React.PropTypes.func,
+  decrement: React.PropTypes.func,
+};
+
 const styles = {
   squareButton: {
     width: 48,

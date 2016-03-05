@@ -6,6 +6,12 @@ const Column = ({ children, className = '', style = {} }) => (
   </div>
 );
 
+Column.propTypes = {
+  children: React.PropTypes.node,
+  className: React.PropTypes.string,
+  style: React.PropTypes.object,
+};
+
 const styles = {
   base: {},
 };

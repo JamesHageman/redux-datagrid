@@ -6,6 +6,12 @@ const FormGroup = ({ children, style = {}, className = '' }) => (
   </div>
 );
 
+FormGroup.propTypes = {
+  children: React.PropTypes.node,
+  style: React.PropTypes.object,
+  className: React.PropTypes.string,
+};
+
 const styles = {
   base: {},
 };

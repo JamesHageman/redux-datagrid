@@ -66,6 +66,13 @@ const App = ({ children, session, login, logout }) => {
   );
 };
 
+App.propTypes = {
+  children: React.PropTypes.node,
+  session: React.PropTypes.object,
+  login: React.PropTypes.func,
+  logout: React.PropTypes.func,
+};
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
