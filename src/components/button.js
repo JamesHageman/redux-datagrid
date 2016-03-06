@@ -9,7 +9,7 @@ const Button = ({
 }) => (
   <button
     type={ type }
-    className={ `btn btn-primary  ${ className }` }
+    className={ `btn btn-primary ${ className }` }
     style={{ ...styles.base, ...style }}
     onClick={ onClick }>
     { children }

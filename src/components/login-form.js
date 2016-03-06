@@ -54,10 +54,10 @@ const LoginForm = ({
     </FormGroup>
 
     <FormGroup>
-      <Button type="submit">
+      <Button type="submit" className="mr1">
         Login
       </Button>
-      <Button onClick={ resetForm } type="button" className="ml2 bg-red">
+      <Button onClick={ resetForm } type="button" className="bg-red">
         Clear
       </Button>
     </FormGroup>
