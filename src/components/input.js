@@ -7,7 +7,7 @@ const Input = ({
   fieldDefinition,
 }) => (
   <input
-    className="block col-12 mb1 field"
+    className="block col-12 mb1 input"
     style={{ ...styles.base, ...style }}
     type={ type }
     placeholder={ placeholder }
