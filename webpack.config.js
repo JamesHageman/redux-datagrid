@@ -79,11 +79,23 @@ module.exports = {
       { test: /\.js$/, loader: 'eslint-loader' },
     ],
     loaders: [
-      { test: /\.css$/, loader: 'style-loader!css-loader!postcss-loader!cssnext-loader' },
+      { test: /\.css$/, loader: 'style-loader!css-loader!postcss-loader' },
       { test: /\.js$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
       { test: /\.json$/, loader: 'json-loader' },
       { test: /\.(png|jpg|jpeg|gif|svg)$/, loader: 'url-loader?prefix=img/&limit=5000' },
       { test: /\.(woff|woff2|ttf|eot)$/, loader: 'url-loader?prefix=font/&limit=5000' },
     ],
+  },
+
+  postcss: function postcssInit() {
+    return [
+      require('postcss-import')({
+        addDependencyTo: webpack,
+      }),
+      require('postcss-cssnext')({
+        browsers: ['ie >= 8', 'last 2 versions'],
+      }),
+      require('autoprefixer'),
+    ];
   },
 };
