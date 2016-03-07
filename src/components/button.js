@@ -1,37 +1,34 @@
 import React from 'react';
+import classNames from 'classnames';
 
 const Button = ({
   children,
-  className = '',
-  style = {},
+  className,
   type = 'button',
   onClick,
-}) => (
-  <button
-    type={ type }
-    className={ `btn btn-primary ${ className }` }
-    style={{ ...styles.base, ...style }}
-    onClick={ onClick }>
-    { children }
-  </button>
-);
+}) => {
+  const buttonClasses = classNames('btn', 'btn-primary', className);
 
-const styles = {
-  base: {},
+  return (
+    <button
+      type={ type }
+      className={ buttonClasses }
+      onClick={ onClick }>
+      { children }
+    </button>
+  );
 };
 
 Button.propTypes = {
   children: React.PropTypes.node.isRequired,
   className: React.PropTypes.string,
-  style: React.PropTypes.object,
-  type: React.PropTypes.string,
+  type: React.PropTypes.oneOf(['button', 'submit', 'reset']),
   onClick: React.PropTypes.func,
 };
 
 Button.defaultProps = {
   className: '',
   type: 'button',
-  style: {},
 };
 
 export default Button;
