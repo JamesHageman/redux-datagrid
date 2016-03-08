@@ -3,27 +3,19 @@ import Button from './button';
 
 const Counter = ({ counter, increment, decrement }) => (
   <div className="flex">
-    <div className="flex-auto flex-center center">
-      <Button
-        style={ styles.squareButton }
-        className="btn btn-primary bg-black"
-        onClick={ decrement }>
-        -
-      </Button>
-    </div>
+    <Button className="bg-black col-2"
+      onClick={ decrement }>
+      -
+    </Button>
 
-    <div className="flex-auto flex-center center h1">
+    <div className="flex-auto center h1">
       { counter }
     </div>
 
-    <div className="flex-auto flex-center center">
-      <Button
-        style={ styles.squareButton }
-        className="btn btn-primary"
-        onClick={ increment }>
-        +
-      </Button>
-    </div>
+    <Button className="col-2"
+      onClick={ increment }>
+      +
+    </Button>
   </div>
 );
 
@@ -31,13 +23,6 @@ Counter.propTypes = {
   counter: React.PropTypes.number,
   increment: React.PropTypes.func,
   decrement: React.PropTypes.func,
-};
-
-const styles = {
-  squareButton: {
-    width: 48,
-    height: 48,
-  },
 };
 
 export default Counter;

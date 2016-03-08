@@ -1,5 +1,6 @@
 @import 'basscss-basic';
 
+/* Add-on Modules */
 @import 'basscss-addons/modules/btn';
 @import 'basscss-addons/modules/btn-primary';
 @import 'basscss-addons/modules/background-colors';
@@ -13,7 +14,9 @@
 @import 'basscss-addons/modules/progress';
 @import 'basscss-addons/modules/lighten';
 @import 'basscss-addons/modules/background-images';
+@import 'basscss-addons/modules/darken';
 
+/* Base Modules */
 @import 'basscss-type-scale';
 @import 'basscss-typography';
 @import 'basscss-layout';

@@ -1,12 +1,11 @@
 import React from 'react';
+import classNames from 'classnames';
 
-const FormError = ({ children, isVisible, style = {}, className = ''}) => {
-  const visibleClass = isVisible ? 'block' : 'hide';
+const FormError = ({ children, isVisible }) => {
+  const formErrorClasses = classNames('bold', 'black', { 'hide': !isVisible });
 
   return (
-    <div
-      className={ `${ className } bold ${ visibleClass } black` }
-      style={{ ...styles.base, ...style }}>
+    <div className={ formErrorClasses }>
       { children }
     </div>
   );
@@ -15,12 +14,6 @@ const FormError = ({ children, isVisible, style = {}, className = ''}) => {
 FormError.propTypes = {
   children: React.PropTypes.node,
   isVisible: React.PropTypes.bool,
-  style: React.PropTypes.object,
-  className: React.PropTypes.string,
-};
-
-const styles = {
-  base: {},
 };
 
 export default FormError;

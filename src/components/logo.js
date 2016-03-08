@@ -1,21 +1,14 @@
 import React from 'react';
 import LogoImage from '../assets/rangleio-logo.svg';
 
-const Logo = ({ style = {} }) => (
-  <img
-    style={{ ...styles.base, ...style }}
-    src={ LogoImage }
-    alt="Rangle.io" />
+const Logo = () => (
+  <div className="flex items-center">
+    <img style={ styles }
+      src={ LogoImage }
+      alt="Rangle.io" />
+  </div>
 );
 
-Logo.propTypes = {
-  style: React.PropTypes.object,
-};
-
-const styles = {
-  base: {
-    width: 128,
-  },
-};
+const styles = { width: 128 };
 
 export default Logo;

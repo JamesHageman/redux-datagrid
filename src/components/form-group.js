@@ -1,19 +1,13 @@
 import React from 'react';
 
-const FormGroup = ({ children, style = {}, className = '' }) => (
-  <div className={ `p2 ${ className }` } style={{ ...styles.base, ...style }}>
+const FormGroup = ({ children }) => (
+  <div className="py2">
     { children }
   </div>
 );
 
 FormGroup.propTypes = {
   children: React.PropTypes.node,
-  style: React.PropTypes.object,
-  className: React.PropTypes.string,
-};
-
-const styles = {
-  base: {},
 };
 
 export default FormGroup;

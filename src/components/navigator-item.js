@@ -1,12 +1,20 @@
 import React from 'react';
+import classNames from 'classnames';
 
-const NavigatorItem = ({ children, isVisible = true, className = '' }) => {
-  const visibleClass = isVisible ? 'block' : 'hide';
+const NavigatorItem = ({
+  children,
+  isVisible = true,
+  mr = false,
+  ml = false,
+}) => {
+  const navItemClasses = classNames('truncate', {
+    hide: !isVisible,
+    mr2: mr,
+    ml2: ml,
+  });
 
   return (
-    <div
-      className={ `${ visibleClass } ${ className }` }
-      style={ styles.base }>
+    <div className={ navItemClasses }>
       { children }
     </div>
   );
@@ -15,11 +23,8 @@ const NavigatorItem = ({ children, isVisible = true, className = '' }) => {
 NavigatorItem.propTypes = {
   children: React.PropTypes.node,
   isVisible: React.PropTypes.bool,
-  className: React.PropTypes.string,
-};
-
-const styles = {
-  base: {},
+  mr: React.PropTypes.bool,
+  ml: React.PropTypes.bool,
 };
 
 export default NavigatorItem;

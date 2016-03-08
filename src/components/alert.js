@@ -33,5 +33,4 @@ Alert.propTypes = {
   status: React.PropTypes.oneOf(['info', 'warning', 'success', 'error']),
 };
 
-
 export default Alert;

@@ -1,8 +1,7 @@
 import React from 'react';
 
-const Form = ({ children, style = {}, handleSubmit }) => (
+const Form = ({ children, handleSubmit }) => (
   <form
-    style={{ ...styles.base, ...style }}
     onSubmit={(e) => {
       e.preventDefault();
       document.activeElement.blur();
@@ -14,12 +13,7 @@ const Form = ({ children, style = {}, handleSubmit }) => (
 
 Form.propTypes = {
   children: React.PropTypes.node,
-  style: React.PropTypes.object,
   handleSubmit: React.PropTypes.func,
-};
-
-const styles = {
-  base: {},
 };
 
 export default Form;
