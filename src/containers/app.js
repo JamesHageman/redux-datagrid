@@ -28,6 +28,8 @@ function mapDispatchToProps(dispatch) {
 const App = ({ children, session, login, logout }) => {
   const token = session.get('token', false);
   const isLoggedIn = token && token !== null && typeof token !== 'undefined';
+  const firstName = session.getIn(['user', 'firstName'], '');
+  const lastName = session.getIn(['user', 'lastName'], '');
 
   return (
     <div>
@@ -37,27 +39,24 @@ const App = ({ children, session, login, logout }) => {
         hasError={ session.get('hasError', false) }
         isVisible={ !isLoggedIn } />
       <Navigator>
-        <div className="flex flex-auto">
-          <NavigatorItem className="p1">
-            <Logo />
-          </NavigatorItem>
-          <NavigatorItem isVisible={ isLoggedIn } className="p1">
-            <Link to="/">Counter</Link>
-          </NavigatorItem>
-          <NavigatorItem isVisible={ isLoggedIn } className="p1">
-            <Link to="/about">About Us</Link>
-          </NavigatorItem>
-        </div>
-        <div className="flex flex-end">
-          <NavigatorItem isVisible={ isLoggedIn } className="p1 bold">
-            { `${ session.getIn(['user', 'firstName'], '') } ${ session.getIn(['user', 'lastName'], '') } ` }
-          </NavigatorItem>
-          <NavigatorItem isVisible={ isLoggedIn }>
-            <Button onClick={ logout } className="bg-red white">
-              Logout
-            </Button>
-          </NavigatorItem>
-        </div>
+        <NavigatorItem mr>
+          <Logo />
+        </NavigatorItem>
+        <NavigatorItem isVisible={ isLoggedIn } mr>
+          <Link to="/">Counter</Link>
+        </NavigatorItem>
+        <NavigatorItem isVisible={ isLoggedIn }>
+          <Link to="/about">About Us</Link>
+        </NavigatorItem>
+        <div className="flex flex-auto"></div>
+        <NavigatorItem isVisible={ isLoggedIn } mr>
+          <b>{ `${ firstName } ${ lastName }` }</b>
+        </NavigatorItem>
+        <NavigatorItem isVisible={ isLoggedIn }>
+          <Button onClick={ logout } className="bg-red white">
+            Logout
+          </Button>
+        </NavigatorItem>
       </Navigator>
       <Content isVisible={ isLoggedIn }>
         { children }
