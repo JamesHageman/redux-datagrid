@@ -40,7 +40,7 @@ const LoginForm = ({
     <FormGroup>
       <FormLabel>Username</FormLabel>
       <Input type="text" fieldDefinition={ username } />
-      <FormError isVisible={ username.touched && username.error }>
+      <FormError isVisible={ !!(username.touched && username.error) }>
         { username.error }
       </FormError>
     </FormGroup>
@@ -48,7 +48,7 @@ const LoginForm = ({
     <FormGroup>
       <FormLabel>Password</FormLabel>
       <Input type="password" fieldDefinition={ password } />
-      <FormError isVisible={ password.touched && password.error }>
+      <FormError isVisible={ !!(password.touched && password.error) }>
         { password.error }
       </FormError>
     </FormGroup>

@@ -1,7 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
-import { browserHistory } from 'react-router';
-import { syncHistory } from 'react-router-redux';
 import persistState from 'redux-localstorage';
 import thunk from 'redux-thunk';
 import promiseMiddleware from '../middleware/promise-middleware';
@@ -20,7 +18,6 @@ function configureStore(initialState) {
 
 function _getMiddleware() {
   let middleware = [
-    syncHistory(browserHistory),
     promiseMiddleware,
     thunk,
   ];
