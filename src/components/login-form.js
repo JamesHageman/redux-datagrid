@@ -40,7 +40,7 @@ const LoginForm = ({
     <FormGroup>
       <FormLabel id="qa-uname-label">Username</FormLabel>
       <Input type="text" fieldDefinition={ username } id="qa-uname-input"/>
-      <FormError id="qa-uname-validation" isVisible={ username.touched && username.error }>
+      <FormError id="qa-uname-validation" isVisible={ !!(username.touched && username.error) }>
         { username.error }
       </FormError>
     </FormGroup>
@@ -48,7 +48,7 @@ const LoginForm = ({
     <FormGroup>
       <FormLabel id="qa-password-label">Password</FormLabel>
       <Input type="password" fieldDefinition={ password } id="qa-password-input" />
-      <FormError id="qa-password-validation" isVisible={ password.touched && password.error }>
+      <FormError id="qa-password-validation" isVisible={ !!(password.touched && password.error) }>
         { password.error }
       </FormError>
     </FormGroup>
