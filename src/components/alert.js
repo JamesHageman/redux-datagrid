@@ -12,6 +12,7 @@ const Alert = ({
   children,
   isVisible,
   status = 'info',
+  ...props,
 }) => {
   const alertClasses = classNames(['p2', 'bold'], {
     block: isVisible,
@@ -21,7 +22,7 @@ const Alert = ({
 
   return (
     <div
-      className={ alertClasses }>
+      className={ alertClasses } {...props}>
       { children }
     </div>
   );
@@ -31,6 +32,7 @@ Alert.propTypes = {
   children: React.PropTypes.node,
   isVisible: React.PropTypes.bool,
   status: React.PropTypes.oneOf(['info', 'warning', 'success', 'error']),
+  id: React.PropTypes.string,
 };
 
 export default Alert;
