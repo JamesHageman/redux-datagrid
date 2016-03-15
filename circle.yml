@@ -6,7 +6,7 @@ test:
   post:
     - npm run dev:
         background: true
-    - pybot -d "./test/robot/test_results" ./test/robot/tests
+    - pybot -d "./e2e/robot/test_results" ./e2e/robot/tests
 general:
   artifacts:
     - "./testing/automated/test_results"  

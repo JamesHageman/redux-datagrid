@@ -32,7 +32,6 @@ Alert.propTypes = {
   children: React.PropTypes.node,
   isVisible: React.PropTypes.bool,
   status: React.PropTypes.oneOf(['info', 'warning', 'success', 'error']),
-  id: React.PropTypes.string,
 };
 
 export default Alert;

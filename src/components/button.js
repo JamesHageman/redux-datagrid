@@ -26,7 +26,6 @@ Button.propTypes = {
   className: React.PropTypes.string,
   type: React.PropTypes.oneOf(['button', 'submit', 'reset']),
   onClick: React.PropTypes.func,
-  id: React.PropTypes.string,
 };
 
 Button.defaultProps = {

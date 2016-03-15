@@ -14,7 +14,6 @@ const FormError = ({ children, isVisible, ...props}) => {
 FormError.propTypes = {
   children: React.PropTypes.node,
   isVisible: React.PropTypes.bool,
-  id: React.PropTypes.string,
 };
 
 export default FormError;

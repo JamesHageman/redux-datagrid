@@ -8,7 +8,6 @@ const FormGroup = ({ children, ...props}) => (
 
 FormGroup.propTypes = {
   children: React.PropTypes.node,
-  id: React.PropTypes.string,
 };
 
 export default FormGroup;
