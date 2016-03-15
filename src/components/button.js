@@ -4,6 +4,7 @@ import classNames from 'classnames';
 const Button = ({
   children,
   className,
+  ...props,
   type = 'button',
   onClick,
 }) => {
@@ -13,6 +14,7 @@ const Button = ({
     <button
       type={ type }
       className={ buttonClasses }
+      {...props}
       onClick={ onClick }>
       { children }
     </button>

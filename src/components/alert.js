@@ -12,6 +12,7 @@ const Alert = ({
   children,
   isVisible,
   status = 'info',
+  ...props,
 }) => {
   const alertClasses = classNames(['p2', 'bold'], {
     block: isVisible,
@@ -21,7 +22,7 @@ const Alert = ({
 
   return (
     <div
-      className={ alertClasses }>
+      className={ alertClasses } {...props}>
       { children }
     </div>
   );

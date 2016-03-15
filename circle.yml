@@ -1,3 +1,12 @@
 machine:
   node:
     version: 4.3.1
+
+test:
+  post:
+    - npm run dev:
+        background: true
+    - pybot -d "./e2e/robot/test_results" ./e2e/robot/tests
+general:
+  artifacts:
+    - "./testing/automated/test_results"  

@@ -22,7 +22,7 @@ function mapDispatchToProps(dispatch) {
 const CounterPage = ({ counter, increaseCounter, decreaseCounter }) => {
   return (
     <Container size={2} center>
-      <h2 className="center caps">Counter</h2>
+      <h2 className="center caps" id="qa-counter-heading">Counter</h2>
 
       <Counter
         counter={ counter }
