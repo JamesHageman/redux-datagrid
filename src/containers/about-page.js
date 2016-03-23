@@ -11,7 +11,7 @@ function mapDispatchToProps() {
   return {};
 }
 
-const AboutPage = () => {
+function AboutPage() {
   return (
     <Container size={4} center>
       <h2 className="caps">About Us</h2>
@@ -21,7 +21,7 @@ const AboutPage = () => {
       </p>
     </Container>
   );
-};
+}
 
 export default connect(
   mapStateToProps,

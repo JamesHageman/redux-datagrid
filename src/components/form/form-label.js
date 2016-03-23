@@ -1,10 +1,12 @@
 import React from 'react';
 
-const FormLabel = ({ children }) => (
-  <label>
-    { children }
-  </label>
-);
+function FormLabel({ children }) {
+  return (
+    <label>
+      { children }
+    </label>
+  );
+}
 
 FormLabel.propTypes = {
   children: React.PropTypes.node,

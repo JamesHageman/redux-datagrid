@@ -8,12 +8,12 @@ const statusClasses = {
   error: 'bg-red white',
 };
 
-const Alert = ({
+function Alert({
   children,
   isVisible,
   status = 'info',
   ...props,
-}) => {
+}) {
   const alertClasses = classNames(['p2', 'bold'], {
     block: isVisible,
     hide: !isVisible,
@@ -22,11 +22,12 @@ const Alert = ({
 
   return (
     <div
-      className={ alertClasses } {...props}>
+      className={ alertClasses }
+      { ...props }>
       { children }
     </div>
   );
-};
+}
 
 Alert.propTypes = {
   children: React.PropTypes.node,

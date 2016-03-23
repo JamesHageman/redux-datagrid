@@ -1,23 +1,25 @@
 import React from 'react';
 import Button from './button';
 
-const Counter = ({ counter, increment, decrement }) => (
-  <div className="flex">
-    <Button className="bg-black col-2"
-      onClick={ decrement }>
-      -
-    </Button>
+function Counter({ counter, increment, decrement }) {
+  return (
+    <div className="flex">
+      <Button className="bg-black col-2"
+        onClick={ decrement }>
+        -
+      </Button>
 
-    <div className="flex-auto center h1">
-      { counter }
+      <div className="flex-auto center h1">
+        { counter }
+      </div>
+
+      <Button className="col-2"
+        onClick={ increment }>
+        +
+      </Button>
     </div>
-
-    <Button className="col-2"
-      onClick={ increment }>
-      +
-    </Button>
-  </div>
-);
+  );
+}
 
 Counter.propTypes = {
   counter: React.PropTypes.number,

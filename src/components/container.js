@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const Container = ({ children, size = 1, center }) => {
+function Container({ children, size = 1, center }) {
   const containerClasses = classNames('clearfix', 'px1', {
     'max-width-1': size === 1,
     'max-width-2': size === 2,
@@ -15,7 +15,7 @@ const Container = ({ children, size = 1, center }) => {
       { children }
     </div>
   );
-};
+}
 
 Container.propTypes = {
   children: React.PropTypes.node,

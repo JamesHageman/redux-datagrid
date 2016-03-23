@@ -1,10 +1,12 @@
 import React from 'react';
 
-const Content = ({ children, isVisible }) => (
-  <main>
-    { isVisible ? children : null }
-  </main>
-);
+function Content({ children, isVisible }) {
+  return (
+    <main>
+      { isVisible ? children : null }
+    </main>
+  );
+}
 
 Content.propTypes = {
   children: React.PropTypes.node,

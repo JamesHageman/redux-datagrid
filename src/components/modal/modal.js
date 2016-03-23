@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Modal = ({ isVisible, children }) => {
+function Modal({ isVisible, children }) {
   const styles = {
     visibility: isVisible ? 'visible' : 'hidden',
     opacity: isVisible ? 1 : 0,
@@ -12,7 +12,7 @@ const Modal = ({ isVisible, children }) => {
       { children }
     </div>
   );
-};
+}
 
 Modal.propTypes = {
   isVisible: React.PropTypes.bool,

@@ -1,12 +1,12 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const NavigatorItem = ({
+function NavigatorItem({
   children,
   isVisible = true,
   mr = false,
   ml = false,
-}) => {
+}) {
   const navItemClasses = classNames('truncate', {
     hide: !isVisible,
     mr2: mr,
@@ -18,7 +18,7 @@ const NavigatorItem = ({
       { children }
     </div>
   );
-};
+}
 
 NavigatorItem.propTypes = {
   children: React.PropTypes.node,

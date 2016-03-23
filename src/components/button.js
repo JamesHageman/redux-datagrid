@@ -1,36 +1,31 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const Button = ({
+function Button({
   children,
   className,
-  ...props,
   type = 'button',
   onClick,
-}) => {
+  ...props,
+}) {
   const buttonClasses = classNames('btn', 'btn-primary', className);
 
   return (
     <button
       type={ type }
       className={ buttonClasses }
-      {...props}
-      onClick={ onClick }>
+      onClick={ onClick }
+      {...props}>
       { children }
     </button>
   );
-};
+}
 
 Button.propTypes = {
   children: React.PropTypes.node.isRequired,
   className: React.PropTypes.string,
   type: React.PropTypes.oneOf(['button', 'submit', 'reset']),
   onClick: React.PropTypes.func,
-};
-
-Button.defaultProps = {
-  className: '',
-  type: 'button',
 };
 
 export default Button;
