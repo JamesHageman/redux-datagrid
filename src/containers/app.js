@@ -6,7 +6,7 @@ import { loginUser, logoutUser } from '../actions/session';
 import { Link } from 'react-router';
 import Button from '../components/button';
 import Content from '../components/content';
-import LoginModal from '../components/login-modal';
+import LoginModal from '../components/login/login-modal';
 import Logo from '../components/logo';
 import Navigator from '../components/navigator';
 import NavigatorItem from '../components/navigator-item';
@@ -25,7 +25,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const App = ({ children, session, login, logout }) => {
+function App({ children, session, login, logout }) {
   const token = session.get('token', false);
   const isLoggedIn = token && token !== null && typeof token !== 'undefined';
   const firstName = session.getIn(['user', 'firstName'], '');
@@ -63,7 +63,7 @@ const App = ({ children, session, login, logout }) => {
       </Content>
     </div>
   );
-};
+}
 
 App.propTypes = {
   children: React.PropTypes.node,

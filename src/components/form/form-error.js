@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const FormError = ({ children, isVisible, ...props}) => {
+function FormError({ children, isVisible, ...props}) {
   const formErrorClasses = classNames('bold', 'black', { 'hide': !isVisible });
 
   return (
@@ -9,7 +9,7 @@ const FormError = ({ children, isVisible, ...props}) => {
       { children }
     </div>
   );
-};
+}
 
 FormError.propTypes = {
   children: React.PropTypes.node,

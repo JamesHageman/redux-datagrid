@@ -19,7 +19,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const CounterPage = ({ counter, increaseCounter, decreaseCounter }) => {
+function CounterPage({ counter, increaseCounter, decreaseCounter }) {
   return (
     <Container size={2} center>
       <h2 className="center caps" id="qa-counter-heading">Counter</h2>
@@ -30,7 +30,7 @@ const CounterPage = ({ counter, increaseCounter, decreaseCounter }) => {
         decrement={ decreaseCounter } />
     </Container>
   );
-};
+}
 
 CounterPage.propTypes = {
   counter: React.PropTypes.number,
