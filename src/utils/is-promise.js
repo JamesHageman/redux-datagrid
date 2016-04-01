@@ -5,9 +5,7 @@
  * @return {Boolean}
  */
 export default function isPromise(value) {
-  if (value !== null && typeof value === 'object') {
-    return value.promise && typeof value.promise.then === 'function';
-  }
-
-  return false;
+  return !!value &&
+    typeof value.promise === 'object' &&
+    typeof value.promise.then === 'function';
 }
