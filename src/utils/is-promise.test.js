@@ -1,5 +1,5 @@
+import { expect } from 'chai';
 import isPromise from './is-promise';
-import assert from 'assert';
 
 describe('isPromise', () => {
   it('should return true if a Promise is provided', () => {
@@ -9,7 +9,7 @@ describe('isPromise', () => {
       promise,
     };
 
-    assert(isPromise(payload));
+    expect(isPromise(payload)).to.be.true;
   });
 
   it('should return false if something that is not a Promise is provided', () => {
@@ -18,9 +18,9 @@ describe('isPromise', () => {
     const badPayload3 = 'hello world';
     const badPayload4 = 'hello world';
 
-    assert(!isPromise({ promise: badPayload1 }));
-    assert(!isPromise({ promise: badPayload2 }));
-    assert(!isPromise({ promise: badPayload3 }));
-    assert(!isPromise({ promise: badPayload4 }));
+    expect(isPromise({ promise: badPayload1 })).to.be.false;
+    expect(isPromise({ promise: badPayload2 })).to.be.false;
+    expect(isPromise({ promise: badPayload3 })).to.be.false;
+    expect(isPromise({ promise: badPayload4 })).to.be.false;
   });
 });
