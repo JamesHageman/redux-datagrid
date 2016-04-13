@@ -6,8 +6,5 @@
       "value":"false"
     }
   },
-  "addons":[],
-  "buildpacks": [
-    { "url:" "heroku/nodejs" }
-  ]
+  "addons":[]
 }
