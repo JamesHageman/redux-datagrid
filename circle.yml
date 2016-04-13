@@ -19,4 +19,5 @@ test:
 
 general:
   artifacts:
-    - "./testing/automated/test_results"
+    - "./e2e/robot/test_results"
+    
