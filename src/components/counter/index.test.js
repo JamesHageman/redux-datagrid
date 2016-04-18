@@ -7,10 +7,9 @@ import Counter from './index';
 describe('counter', () => {
   it('should create a counter', () => {
     const wrapper = render(<Counter counter={5} />);
-    
+
     assert.isOk(wrapper.children().length,
       'Counter not found');
-    console.log(wrapper.html());
     assert.strictEqual(wrapper.find('[data-ref="result"]').text(), '5',
       'Counter not showing its value');
   });
