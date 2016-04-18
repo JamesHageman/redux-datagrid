@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const proxy = require('./server/webpack-dev-proxy');
+const styleLintPlugin = require('stylelint-webpack-plugin');
 
 function getEntrySources(sources) {
   if (process.env.NODE_ENV !== 'production') {
@@ -25,6 +26,11 @@ const basePlugins = [
 
 const devPlugins = [
   new webpack.NoErrorsPlugin(),
+  new styleLintPlugin({
+    configFile: './.stylelintrc',
+    files: ['src/**/*.css'],
+    failOnError: false,
+  }),
 ];
 
 const prodPlugins = [
