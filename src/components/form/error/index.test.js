@@ -5,8 +5,9 @@ import Error from './index';
 
 describe('Error', () => {
   it('should create a error', () => {
+    const t = true; // ESLint workaround
     const wrapper = render(
-      <Error isVisible={true}>Hello world</Error>
+      <Error isVisible={t}>Hello world</Error>
     );
 
     assert.isOk(wrapper.children().length, 'error not created');

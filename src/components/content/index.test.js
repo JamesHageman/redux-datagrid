@@ -5,7 +5,10 @@ import Content from './index';
 
 describe('Content', () => {
   it('should render html inside a <main> tag', () => {
-    const wrapper = render(<Content isVisible={true}>Hello world</Content>);
+    const t = true; // ESLint workaround
+    const wrapper = render(
+      <Content isVisible={t}>Hello world</Content>
+    );
     const mainElement = wrapper.find('main');
 
     assert.isOk(mainElement.length, 'main element not found');
@@ -14,7 +17,10 @@ describe('Content', () => {
   });
 
   it('should not render content if set to not visible', () => {
-    const wrapper = render(<Content isVisible={false}>Hello world</Content>);
+    const wrapper = render(
+      <Content isVisible={false}>
+        Hello world
+      </Content>);
     const mainElement = wrapper.find('main');
 
     assert.strictEqual(mainElement.text(), '',

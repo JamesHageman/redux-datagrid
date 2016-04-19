@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import React from 'react';
-import { shallow, render, mount } from 'enzyme';
+import { render } from 'enzyme';
 import Input from './index';
 
 describe('Input', () => {
