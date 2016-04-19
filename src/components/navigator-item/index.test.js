@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import React from 'react';
-import { render } from 'enzyme';
+import { render, shallow } from 'enzyme';
 import NavigatorItem from './index';
 
 describe('NavigatorItem', () => {
@@ -16,5 +16,15 @@ describe('NavigatorItem', () => {
     const wrapper = render(<NavigatorItem isVisible={false}>Hello world</NavigatorItem>);
 
     assert.isOk(wrapper.find('.hide').length, '"hide" css class not found');
+  });
+
+  it('should have left and right margins', () => {
+    const wrapper = shallow(
+      <NavigatorItem mr ml>
+        Hello world
+      </NavigatorItem>
+    );
+    assert(wrapper.find('.mr2'), 'right margin class not added');
+    assert(wrapper.find('.ml2'), 'left margin class not added');
   });
 });

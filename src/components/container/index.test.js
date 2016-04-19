@@ -15,7 +15,7 @@ describe('Container', () => {
 
   it('should create a centered container', () => {
     const wrapper = render(
-      <Container center="true" size={2}>Success!</Container>
+      <Container center>Success!</Container>
     );
     assert.isOk(wrapper.find('.mx-auto').length);
   });

@@ -27,4 +27,12 @@ describe('Alert', () => {
 
     assert.isOk(wrapper.find('.bg-green').length);
   });
+
+  it('should have an error background', () => {
+    const wrapper = render(
+      <Alert status="error">Failed!</Alert>
+    );
+
+    assert.isOk(wrapper.find('.bg-red').length);
+  });
 });

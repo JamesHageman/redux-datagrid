@@ -5,9 +5,8 @@ import Content from './index';
 
 describe('Content', () => {
   it('should render html inside a <main> tag', () => {
-    const t = true; // ESLint workaround
     const wrapper = render(
-      <Content isVisible={t}>Hello world</Content>
+      <Content isVisible>Hello world</Content>
     );
     const mainElement = wrapper.find('main');
 

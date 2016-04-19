@@ -25,4 +25,15 @@ describe('Form', () => {
     wrapper.find('form').simulate('submit', eventStub);
     assert.isTrue(onSubmit.calledOnce, 'form not submitted');
   });
+
+  it('should blur the currently focused element on submit', () => {
+    const onBlur = sinon.spy();
+    global.document = { activeElement: { blur: onBlur } };
+    const wrapper = shallow(
+      <Form handleSubmit={() => {}} />
+    );
+    const eventStub = { preventDefault: () => {} };
+    wrapper.find('form').simulate('submit', eventStub);
+    assert.isTrue(onBlur.calledOnce, 'focused element was not blurred');
+  });
 });

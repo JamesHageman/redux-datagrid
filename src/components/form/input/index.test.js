@@ -7,7 +7,6 @@ describe('Input', () => {
   it('should create an input', () => {
     // Render the Input component
     const props = {
-      type: 'password',
       placeholder: 'sample placeholder',
     };
     const wrapper = render(
@@ -19,7 +18,7 @@ describe('Input', () => {
 
     // Find the input
     const inputElement = wrapper.find('input');
-    assert.isOk(inputElement, 'Unable to render input');
+    assert.isOk(inputElement.length, 'Unable to render input');
 
     // Validate the props were set
     assert.isNotNull(
@@ -27,9 +26,8 @@ describe('Input', () => {
       'type-attribute not found'
     );
     assert.strictEqual(
-      inputElement.attr('type'),
-      props.type,
-      'type-attribute has incorrect value'
+      inputElement.attr('type'), 'text',
+      'type-attribute is not text by default'
     );
     assert.isNotNull(
       inputElement.attr('placeholder'),
@@ -39,6 +37,19 @@ describe('Input', () => {
       inputElement.attr('placeholder'),
       props.placeholder,
       'placeholder-attribute has incorrect value'
+    );
+  });
+
+  it('should create a password field', () => {
+    const wrapper = render(
+      <div id="root">
+        <Input type="password" />
+      </div>
+    );
+    const inputElement = wrapper.find('input');
+    assert.strictEqual(
+      inputElement.attr('type'), 'password',
+      'input is not of type password'
     );
   });
 });
