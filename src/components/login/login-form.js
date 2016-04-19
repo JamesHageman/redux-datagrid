@@ -2,7 +2,7 @@ import React from 'react';
 import { reduxForm } from 'redux-form';
 
 import Form from '../form';
-import FormGroup from '../form/form-group';
+import FormGroup from '../form/group';
 import FormLabel from '../form/label';
 import FormError from '../form/form-error';
 import Input from '../form/input';
