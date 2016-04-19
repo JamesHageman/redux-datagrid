@@ -3,7 +3,7 @@ import { reduxForm } from 'redux-form';
 
 import Form from '../form/form';
 import FormGroup from '../form/form-group';
-import FormLabel from '../form/form-label';
+import FormLabel from '../form/label';
 import FormError from '../form/form-error';
 import Input from '../form/input';
 import Button from '../button';
