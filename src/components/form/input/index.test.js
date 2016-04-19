@@ -1,49 +1,42 @@
 import { assert } from 'chai';
-import jsdom from 'jsdom';
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
-import Input from './input';
+import { shallow, render, mount } from 'enzyme';
+import Input from './index';
 
 describe('Input', () => {
-  beforeEach(() => {
-    global.document = jsdom.jsdom();
-    global.window = document.defaultView;
-  });
-
-  // Ensure an <input> tag exists
   it('should create an input', () => {
     // Render the Input component
     const props = {
       type: 'password',
       placeholder: 'sample placeholder',
     };
-    const component = TestUtils.renderIntoDocument(
+    const wrapper = render(
       <div id="root">
         <Input { ...props } />
       </div>
     );
-    assert.isDefined(component, 'Unable to render component');
+    assert.isOk(wrapper.children().length, 'Unable to render component');
 
     // Find the input
-    const inputElement = component.querySelector('input');
-    assert.isDefined(inputElement, 'Unable to render input');
+    const inputElement = wrapper.find('input');
+    assert.isOk(inputElement, 'Unable to render input');
 
     // Validate the props were set
     assert.isNotNull(
-      inputElement.attributes.getNamedItem('type'),
+      inputElement.attr('type'),
       'type-attribute not found'
     );
     assert.strictEqual(
-      inputElement.attributes.getNamedItem('type').value,
+      inputElement.attr('type'),
       props.type,
       'type-attribute has incorrect value'
     );
     assert.isNotNull(
-      inputElement.attributes.getNamedItem('placeholder'),
+      inputElement.attr('placeholder'),
       'placeholder-attribute not found'
     );
     assert.strictEqual(
-      inputElement.attributes.getNamedItem('placeholder').value,
+      inputElement.attr('placeholder'),
       props.placeholder,
       'placeholder-attribute has incorrect value'
     );
