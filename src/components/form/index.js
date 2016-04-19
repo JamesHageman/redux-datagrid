@@ -5,7 +5,9 @@ function Form({ children, handleSubmit }) {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        document.activeElement.blur();
+        if (document.activeElement) {
+          document.activeElement.blur();
+        }
         handleSubmit();
       }}>
       { children }
