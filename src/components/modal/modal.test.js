@@ -1,25 +1,19 @@
 import assert from 'assert';
-import jsdom from 'jsdom';
+import { render } from 'enzyme';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import Modal from './modal';
 
 describe('Modal Component', () => {
-  beforeEach(() => {
-    global.document = jsdom.jsdom();
-    global.window = document.defaultView;
+  it('should create a modal', () => {
+    const wrapper = render(<Modal>Hello world</Modal>);
+    assert.strictEqual(wrapper.text(), 'Hello world');
+    assert.strictEqual(wrapper.children().css('visibility'), 'hidden');
   });
 
-  it('should create a modal', () => {
-    const props = {
-      children: 'hello world',
-    };
-
-    const node = document.createElement('div');
-    const modal = ReactDOM.render(<div><Modal { ...props } /></div>, node);
-
-    assert(modal.childNodes[0].innerHTML === 'hello world');
+  it('should create a visible modal', () => {
+    const wrapper = render(<Modal isVisible>Hello world</Modal>);
+    assert.strictEqual(wrapper.children().css('visibility'), 'visible');
   });
 });
