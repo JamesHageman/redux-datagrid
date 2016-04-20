@@ -95,6 +95,7 @@ module.exports = {
 
   postcss: function postcssInit() {
     return [
+      require('postcss-modules-local-by-default'),
       require('postcss-import')({
         addDependencyTo: webpack,
       }),
