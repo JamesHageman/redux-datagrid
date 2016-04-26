@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const proxy = require('./server/webpack-dev-proxy');
 const styleLintPlugin = require('stylelint-webpack-plugin');
+const SplitByPathPlugin = require('webpack-split-by-path');
 
 function getEntrySources(sources) {
   if (process.env.NODE_ENV !== 'production') {
@@ -18,6 +19,9 @@ const basePlugins = [
     __PRODUCTION__: process.env.NODE_ENV === 'production',
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
   }),
+  new SplitByPathPlugin([
+    { name: 'vendor', path: [__dirname + '/node_modules/'] }
+  ]),
   new HtmlWebpackPlugin({
     template: './src/index.html',
     inject: 'body',
@@ -71,17 +75,10 @@ const postcssPlugins = postcssBasePlugins
 module.exports = {
   entry: {
     app: getEntrySources(['./src/index.js']),
-    vendor: [
+    shims: [
       'es5-shim',
       'es6-shim',
       'es6-promise',
-      'react',
-      'react-redux',
-      'redux',
-      'redux-thunk',
-      'redux-logger',
-      'react-router',
-      'react-router-redux',
     ],
   },
 
