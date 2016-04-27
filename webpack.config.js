@@ -75,11 +75,6 @@ const postcssPlugins = postcssBasePlugins
 module.exports = {
   entry: {
     app: getEntrySources(['./src/index.js']),
-    shims: [
-      'es5-shim',
-      'es6-shim',
-      'es6-promise',
-    ],
   },
 
   output: {
