@@ -1,3 +1,5 @@
+[![Stories in Ready](https://badge.waffle.io/rangle/rangle-starter.png?label=ready&title=Ready)](https://waffle.io/rangle/rangle-starter)
+
 # react-redux-starter
 
 > Rangle.io official React + Redux starter
