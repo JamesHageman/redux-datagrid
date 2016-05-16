@@ -96,7 +96,7 @@ module.exports = {
   module: {
     preLoaders: [
       { test: /\.js$/, loader: 'source-map-loader' },
-      { test: /\.js$/, loader: 'eslint-loader' },
+      // { test: /\.js$/, loader: 'eslint-loader' },
     ],
     loaders: [
       { test: /\.css$/, loader: 'style-loader!css-loader!postcss-loader' },
