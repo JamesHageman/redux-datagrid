@@ -10,9 +10,15 @@ const createConnectedGrid = ({ name }, Component) => connect(({ datagrid }, prop
     return {};
   }
 
+  const selectorData = {
+    state: gridState,
+    props: props,
+    options: { name, columns: [ 'name', 'type' ] },
+  };
+
   return {
-    data: gridState.selectors.visibleData(gridState, props),
-    groupedData: gridState.selectors.groupedData(gridState, props),
+    data: gridState.selectors.visibleData(selectorData),
+    groupedData: gridState.selectors.groupedData(selectorData),
     fullData: props.data,
     name: name,
     searchText: gridState.searchText,
@@ -20,11 +26,11 @@ const createConnectedGrid = ({ name }, Component) => connect(({ datagrid }, prop
   };
 }, {
   handleSearchTextChange: (e) => ({
-    type: 'Datagrid/CHANGE_SEARCH_TEXT',
+    type: 'redux-datagrid/CHANGE_SEARCH_TEXT',
     payload: { name, text: e.target.value },
   }),
   initDatagrid: () => ({
-    type: 'Datagrid/INIT',
+    type: 'redux-datagrid/INIT',
     payload: { name },
   }),
 })(DatagridWrapper);
@@ -75,7 +81,9 @@ const Datagrid = ({
       <input value={searchText} onChange={handleSearchTextChange}/>
       <p>{ searchText && `Searching for ${searchText}`}</p>
       <p>Showing { data.length } / { fullData.length }</p>
+      <h3>Data:</h3>
       <pre>{JSON.stringify(data, 0, 2)}</pre>
+      <h3>Grouped:</h3>
       <pre>{JSON.stringify(groupedData, 0, 2)}</pre>
     </div>
   );
@@ -92,4 +100,8 @@ Datagrid.propTypes = {
 
 export default connectDatagrid({
   name: 'my-grid',
+  columns: [
+    { dataKey: 'name' },
+    { dataKey: 'type' },
+  ],
 })(Datagrid);

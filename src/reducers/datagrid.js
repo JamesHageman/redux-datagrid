@@ -1,21 +1,58 @@
 import { createSelector } from 'reselect';
 
 const initialState = {};
+const columnDefaults = {
+  cellDataGetter: (row, dataKey) => row[dataKey],
+};
 
-function searchIndex(object = {}) {
-  return Object.keys(object).map(key => object[key])
-    .filter(val => typeof val === 'string')
-    .map(val => val.trim().toLowerCase())
+const searchIndex = columns => (object = {}) => {
+  return columns.map((col, i) =>
+    col.cellDataGetter(object, col.dataKey, i)
+  ).filter(s => !!s).map(s => s.toString().trim().toLowerCase())
     .join(' ');
-}
+};
 
-const searchTextSelector = (state) => state.searchText;
+const columnsInputSelector = ({ props, options }) => {
+  if (props.columns) {
+    return props.columns;
+  }
+
+  if (options.columns) {
+    return options.columns;
+  }
+
+  throw new Error(`Redux Datagrid "${name}" must be passed "columns" either
+   as props or in createConnectedGrid()`);
+};
+
+const columnsSelector = createSelector(columnsInputSelector,
+  columnDefs => columnDefs.map(col => {
+    if (typeof col === 'string') {
+      return {
+        ...columnDefaults,
+        dataKey: col,
+      };
+    }
+
+    if (!col.dataKey || typeof col.dataKey !== 'string') {
+      throw new Error(`Columns defs must either be a string or an object with
+                      a dataKey string`);
+    }
+
+    return {
+      ...columnDefaults,
+      ...col,
+    };
+  })
+);
+
+const searchTextSelector = ({ state }) => state.searchText;
 const searchTermSelector = createSelector(
   searchTextSelector, text => text.trim().toLowerCase()
 );
-const dataSelector = (state, props) => props.data;
+const dataSelector = ({ props }) => props.data;
 
-const createDefaultPropSelector = (stateKey, propKey) => (state, props) => {
+const createDefaultPropSelector = (stateKey, propKey) => ({ state, props }) => {
   if (state[stateKey]) {
     return state[stateKey];
   }
@@ -53,8 +90,9 @@ const sortedDataSelector = createSelector(
 
 const dataWordIndexSelector = createSelector(
   sortedDataSelector,
-  data => {
-    return data.map(searchIndex);
+  columnsSelector,
+  (data, columns) => {
+    return data.map(searchIndex(columns));
   },
 );
 
@@ -101,20 +139,20 @@ const initGridState = () => ({
 });
 
 export default (state = initialState, action) => {
-  if (!/Datagrid\//.test(action.type)) {
+  if (!/redux-datagrid\//.test(action.type)) {
     return state;
   }
 
   const name = action.payload.name;
 
   switch (action.type) {
-  case 'Datagrid/INIT':
+  case 'redux-datagrid/INIT':
     return {
       ...state,
       [name]: initGridState(),
     };
 
-  case 'Datagrid/CHANGE_SEARCH_TEXT':
+  case 'redux-datagrid/CHANGE_SEARCH_TEXT':
     return {
       ...state,
       [name]: {
