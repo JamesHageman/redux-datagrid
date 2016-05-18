@@ -74,6 +74,17 @@ describe('selectors', () => {
       input.state.searchText = 'foo';
       $.deepEqual(filteredDataSelector(input), []);
     });
+
+    it('should sort by name', () => {
+      input.props.defaultSortBy = 'name';
+      $.deepEqual(filteredDataSelector(input), [
+        { id: 1, name: 'apple', type: 'foo' },
+        { id: 3, name: 'banana', type: 'foo' },
+        { id: 2, name: 'orange', type: 'foo' },
+        { id: 4, name: 'pineapple', type: 'bar' },
+        { id: 5, name: 'strawberry', type: 'bar' },
+      ]);
+    });
   });
 
   describe('groupedDataSelector', () => {
