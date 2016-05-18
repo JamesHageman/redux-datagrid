@@ -20,6 +20,7 @@ export default class DatagridWrapper extends React.Component {
   render() {
     const {
       Component,
+      initDatagrid,
       ...otherProps,
     } = this.props;
 
