@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const proxy = require('./server/webpack-dev-proxy');
 const styleLintPlugin = require('stylelint-webpack-plugin');
 const SplitByPathPlugin = require('webpack-split-by-path');
 
@@ -23,7 +22,7 @@ const basePlugins = [
     { name: 'vendor', path: [__dirname + '/node_modules/'] }
   ]),
   new HtmlWebpackPlugin({
-    template: './src/index.html',
+    template: './example/index.html',
     inject: 'body',
   }),
 ];
@@ -32,7 +31,7 @@ const devPlugins = [
   new webpack.NoErrorsPlugin(),
   new styleLintPlugin({
     configFile: './.stylelintrc',
-    files: ['src/**/*.css'],
+    files: ['example/**/*.css'],
     failOnError: false,
   }),
 ];
@@ -74,7 +73,7 @@ const postcssPlugins = postcssBasePlugins
 
 module.exports = {
   entry: {
-    app: getEntrySources(['./src/index.js']),
+    app: getEntrySources(['./example/index.js']),
   },
 
   output: {
@@ -90,7 +89,6 @@ module.exports = {
 
   devServer: {
     historyApiFallback: { index: '/' },
-    proxy: proxy(),
   },
 
   module: {
