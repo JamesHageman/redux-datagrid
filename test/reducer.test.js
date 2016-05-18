@@ -1,4 +1,4 @@
-import assert from 'assert';
+import $ from 'assert';
 import reducer from '../src/reducer';
 
 describe('reduxDatagrid reducer', () => {
@@ -11,12 +11,12 @@ describe('reduxDatagrid reducer', () => {
   });
 
   it('should return inital state', () => {
-    assert.deepEqual(reducer(undefined, {}), {});
+    $.deepEqual(reducer(undefined, {}), {});
   });
 
   it('should init a grid at the right key', () => {
-    assert.ok(state['test-grid']);
-    assert.deepEqual(state, {
+    $.ok(state['test-grid']);
+    $.deepEqual(state, {
       'test-grid': {
         ...state['test-grid'],
         searchText: '',
@@ -27,7 +27,7 @@ describe('reduxDatagrid reducer', () => {
   });
 
   it('should change searchText', () => {
-    assert.equal(state['test-grid'].searchText, '');
+    $.equal(state['test-grid'].searchText, '');
     state = reducer(state, {
       type: 'redux-datagrid/CHANGE_SEARCH_TEXT',
       payload: {
@@ -36,11 +36,11 @@ describe('reduxDatagrid reducer', () => {
       },
     });
 
-    assert.equal(state['test-grid'].searchText, 'foo');
+    $.equal(state['test-grid'].searchText, 'foo');
   });
 
   it('should throw when passed an uninitialized grid', () => {
-    assert.throws(() => {
+    $.throws(() => {
       reducer(state, {
         type: 'redux-datagrid/CHANGE_SEARCH_TEXT',
         payload: {
@@ -50,6 +50,4 @@ describe('reduxDatagrid reducer', () => {
       });
     }, 'Action "redux-datagrid/CHANGE_SEARCH_TEXT" called with uninitialized grid "bad-grid"');
   });
-
-  // console.log(assert);
 });
