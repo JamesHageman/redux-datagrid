@@ -20,7 +20,7 @@ export default class DatagridWrapper extends React.Component {
   render() {
     const {
       Component,
-      initDatagrid,
+      initDatagrid, // eslint-disable-line no-unused-vars
       ...otherProps,
     } = this.props;
 
