@@ -19,13 +19,18 @@ export default (state = initialState, action) => {
 
   const name = action.payload.name;
 
-  switch (action.type) {
-  case 'redux-datagrid/INIT':
+  if (action.type === 'redux-datagrid/INIT') {
     return {
       ...state,
       [name]: initGridState(),
     };
+  }
 
+  if (!state[name]) {
+    throw new Error(`Action "${action.type}" called with uninitialized grid "${name}"`);
+  }
+
+  switch (action.type) {
   case 'redux-datagrid/CHANGE_SEARCH_TEXT':
     return {
       ...state,

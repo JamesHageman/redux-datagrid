@@ -63,7 +63,7 @@ const postcssProdPlugins = [
   require('cssnano')({
     safe: true,
     sourcemap: true,
-    autoprefixer:false,
+    autoprefixer: false,
   }),
 ];
 
