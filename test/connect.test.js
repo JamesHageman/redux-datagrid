@@ -3,8 +3,10 @@ import $ from 'assert';
 import reduxDatagrid from '../src/connect';
 import { shallow } from 'enzyme';
 import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
 import reducer from '../src/reducer';
 import DatagridWrapper from '../src/datagrid-wrapper';
+import { spy } from 'sinon';
 
 describe('reduxDatagrid HOC', () => {
   let Grid;
@@ -13,10 +15,7 @@ describe('reduxDatagrid HOC', () => {
   let data;
   let columns;
   let wrapper;
-
-  function render() {
-    wrapper = shallow(<ConnectedGrid store={store} data={data}/>);
-  }
+  let options;
 
   function setup() {
     data = data || [
@@ -28,6 +27,8 @@ describe('reduxDatagrid HOC', () => {
     ];
 
     columns = columns || [ 'name', 'type' ];
+
+    options = options || { name: 'grid', columns };
 
     store = createStore(combineReducers({
       datagrid: reducer,
@@ -42,8 +43,12 @@ describe('reduxDatagrid HOC', () => {
       return <span/>;
     };
 
-    ConnectedGrid = reduxDatagrid({ name: 'grid', columns })(Grid);
+    ConnectedGrid = reduxDatagrid(options)(Grid);
     render();
+  }
+
+  function render() {
+    wrapper = shallow(<ConnectedGrid store={store} data={data}/>);
   }
 
   beforeEach(() => {
@@ -53,6 +58,7 @@ describe('reduxDatagrid HOC', () => {
     data = null;
     columns = null;
     wrapper = null;
+    options = null;
   });
 
   it('should return a component', () => {
@@ -84,5 +90,25 @@ describe('reduxDatagrid HOC', () => {
     ]);
 
     $.equal(wrapper.prop('fullData'), data);
+  });
+
+  it('should pass nothing from state when the grid hasn\'t been initialized', () => {
+    options = { name: 'other-grid', columns };
+    setup();
+    $.deepEqual(wrapper.props(), {
+      store,
+      data,
+      handleSearchTextChange: wrapper.prop('handleSearchTextChange'),
+      initDatagrid: wrapper.prop('initDatagrid'),
+    });
+  });
+
+  it('should fire the INIT action', () => {
+    setup();
+    spy(store, 'dispatch');
+    $.deepEqual(wrapper.props().initDatagrid(), {
+      type: 'redux-datagrid/INIT',
+      payload: { name: 'grid' },
+    });
   });
 });
