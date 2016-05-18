@@ -24,6 +24,12 @@ describe('DatagridWrapper', () => {
     $.ok(initDatagrid.calledOnce);
   });
 
+  it('should not call initDatagrid() when a Component is passed', () => {
+    wrapper = shallow(<DatagridWrapper initDatagrid={initDatagrid} Component={Child}/>);
+    wrapper.instance().componentDidMount();
+    $.equal(initDatagrid.callCount, 0);
+  });
+
   it('should render Component when passed', () => {
     wrapper = shallow(<DatagridWrapper initDatagrid={initDatagrid} Component={Child}/>);
     $.equal(wrapper.find(Child).length, 1);
