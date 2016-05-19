@@ -57,7 +57,6 @@ const columnsInputSelector = ({ props, options }) => {
 };
 
 export function createSelectors() {
-
   const columnsSelector = createSelector(
     columnsInputSelector,
     columnDefs => columnDefs.map(col => {
