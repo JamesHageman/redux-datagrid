@@ -33,14 +33,32 @@ describe('selectors', () => {
     };
   });
 
-  it('should throw when no columns passed', () => {
-    $.throws(() => {
-      delete data.options.columns;
-      filteredDataSelector(data);
-    }, 'Redux Datagrid "grid" must be passed "columns" either as props or in createConnectedGrid()');
-  });
-
   describe('filteredDataSelector', () => {
+    it('should throw when no columns passed', () => {
+      input.options.columns = undefined;
+
+      $.ok(!input.options.columns);
+      $.ok(!input.props.columns);
+
+      $.throws(() => {
+        filteredDataSelector(input);
+      }, Error);
+    });
+
+    it('should throw when invalid columns passed', () => {
+      input.options.columns = [{}];
+      $.throws(() => {
+        filteredDataSelector(input);
+      }, Error);
+    });
+
+    it('should throw when dataKey is not a string', () => {
+      input.options.columns = [{ dataKey: 5 }];
+      $.throws(() => {
+        filteredDataSelector(input);
+      }, Error);
+    });
+
     it('should do nothing when no searchText', () => {
       $.equal(filteredDataSelector(input), data);
     });
@@ -53,6 +71,27 @@ describe('selectors', () => {
     });
 
     it('can search by type', () => {
+      input.state.searchText = 'foo';
+      $.deepEqual(filteredDataSelector(input), [
+        { id: 1, name: 'apple', type: 'foo' },
+        { id: 2, name: 'orange', type: 'foo' },
+        { id: 3, name: 'banana', type: 'foo' },
+      ]);
+    });
+
+    it('also works when passed columns as props', () => {
+      delete input.options.columns;
+      input.props.columns = columns;
+      input.state.searchText = 'foo';
+      $.deepEqual(filteredDataSelector(input), [
+        { id: 1, name: 'apple', type: 'foo' },
+        { id: 2, name: 'orange', type: 'foo' },
+        { id: 3, name: 'banana', type: 'foo' },
+      ]);
+    });
+
+    it('works with object columns', () => {
+      input.options.columns = [ { dataKey: 'name' }, 'type' ];
       input.state.searchText = 'foo';
       $.deepEqual(filteredDataSelector(input), [
         { id: 1, name: 'apple', type: 'foo' },
@@ -79,6 +118,19 @@ describe('selectors', () => {
       input.props.defaultSortBy = 'name';
       $.deepEqual(filteredDataSelector(input), [
         { id: 1, name: 'apple', type: 'foo' },
+        { id: 3, name: 'banana', type: 'foo' },
+        { id: 2, name: 'orange', type: 'foo' },
+        { id: 4, name: 'pineapple', type: 'bar' },
+        { id: 5, name: 'strawberry', type: 'bar' },
+      ]);
+    });
+
+    it('should do a stable sort', () => {
+      input.state.sortBy = 'name';
+      input.props.data.push({ id: 6, name: 'apple', type: 'baz '});
+      $.deepEqual(filteredDataSelector(input), [
+        { id: 1, name: 'apple', type: 'foo' },
+        { id: 6, name: 'apple', type: 'baz '},
         { id: 3, name: 'banana', type: 'foo' },
         { id: 2, name: 'orange', type: 'foo' },
         { id: 4, name: 'pineapple', type: 'bar' },

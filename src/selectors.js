@@ -4,7 +4,7 @@ const columnDefaults = {
   cellDataGetter: (row, dataKey) => row[dataKey],
 };
 
-const searchIndex = columns => (object = {}) => {
+const searchIndex = columns => (object) => {
   return columns.map((col, i) =>
     col.cellDataGetter(object, col.dataKey, i)
   ).filter(s => !!s).map(s => s.toString().trim().toLowerCase())
@@ -20,7 +20,7 @@ const columnsInputSelector = ({ props, options }) => {
     return options.columns;
   }
 
-  throw new Error(`Redux Datagrid "${name}" must be passed "columns" either
+  throw new Error(`Redux Datagrid must be passed "columns" either
    as props or in createConnectedGrid()`);
 };
 
@@ -33,7 +33,7 @@ const columnsSelector = createSelector(columnsInputSelector,
       };
     }
 
-    if (!col.dataKey || typeof col.dataKey !== 'string') {
+    if (!col || !col.dataKey || typeof col.dataKey !== 'string') {
       throw new Error(`Columns defs must either be a string or an object with
                       a dataKey string`);
     }

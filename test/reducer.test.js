@@ -50,4 +50,13 @@ describe('reduxDatagrid reducer', () => {
       });
     }, 'Action "redux-datagrid/CHANGE_SEARCH_TEXT" called with uninitialized grid "bad-grid"');
   });
+
+  it('should return state when called with an unknow redux-datagrid action', () => {
+    const newState = reducer(state, {
+      type: 'redux-datagrid/OTHER_FUNC',
+      payload: { name: 'test-grid' },
+    });
+
+    $.strictEqual(newState, state);
+  });
 });
