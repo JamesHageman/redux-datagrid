@@ -1,7 +1,4 @@
-import {
-  filteredDataSelector,
-  groupedDataSelector,
-} from '../src/selectors';
+import { createSelectors } from '../src/selectors';
 import $ from 'assert';
 import { fromJS } from 'immutable';
 
@@ -9,8 +6,14 @@ describe('selectors', () => {
   let input;
   let data;
   let columns;
+  let filteredDataSelector;
+  let groupedDataSelector;
 
   beforeEach(() => {
+    const selectors = createSelectors();
+    filteredDataSelector = selectors.filteredDataSelector;
+    groupedDataSelector = selectors.groupedDataSelector;
+
     columns = [ 'name', 'type' ];
 
     data = [

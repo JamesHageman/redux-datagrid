@@ -1,16 +1,19 @@
-import { filteredDataSelector, groupedDataSelector } from './selectors';
+import { createSelectors } from './selectors';
 
 const initialState = {};
 
-const initGridState = () => ({
-  searchText: '',
-  sortBy: null,
-  groupBy: null,
-  selectors: {
-    visibleData: filteredDataSelector,
-    groupedData: groupedDataSelector,
-  },
-});
+const initGridState = () => {
+  const { filteredDataSelector, groupedDataSelector } = createSelectors();
+  return {
+    searchText: '',
+    sortBy: null,
+    groupBy: null,
+    selectors: {
+      visibleData: filteredDataSelector,
+      groupedData: groupedDataSelector,
+    },
+  };
+};
 
 export default (state = initialState, action) => {
   if (!/redux-datagrid\//.test(action.type)) {
