@@ -20,7 +20,7 @@ class CodeTabs extends React.Component {
           </a>
         </div>
         <div className="p1 bg-darken-1">
-          { showCode ? <pre>{code}</pre> : children}
+          { showCode ? <pre className="m0">{code}</pre> : children}
         </div>
       </div>
     );
