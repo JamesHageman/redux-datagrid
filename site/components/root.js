@@ -17,10 +17,10 @@ const Root = ({ children }) => <div className="bg-white">
       <Link to="/">Getting Started</Link>
       <h3>Examples</h3>
       <ul className="list-reset">
-        <li><Link to="/examples/basic">Basic List</Link></li>
-        <li><Link to="/examples/basic">Basic Table</Link></li>
-        <li><Link to="/examples/basic">Grouping Table</Link></li>
-        <li><Link to="/examples/basic">Infinite list</Link></li>
+        <li><Link to="/examples/basic-list">Basic List</Link></li>
+        <li><Link to="/examples/basic-table">Basic Table</Link></li>
+        <li><Link to="/examples/grouping-table">Grouping Table</Link></li>
+        <li><Link to="/examples/infinite-list">Infinite list</Link></li>
       </ul>
     </nav>
     <section className="flex-auto p1">

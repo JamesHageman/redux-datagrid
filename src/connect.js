@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import DatagridWrapper from './datagrid-wrapper';
 
-const createConnectedGrid = ({ name }, Component) => connect(
+const createConnectedGrid = ({ name, columns }, Component) => connect(
 (state, props) => {
   const gridState = state.datagrid[name];
 
@@ -12,7 +12,7 @@ const createConnectedGrid = ({ name }, Component) => connect(
   const selectorData = {
     state: gridState,
     props: props,
-    options: { name, columns: [ 'name', 'type' ] },
+    options: { name, columns },
   };
 
   return {
@@ -35,7 +35,7 @@ const createConnectedGrid = ({ name }, Component) => connect(
 })(DatagridWrapper);
 
 
-const reduxDatagrid = ({ name }) => GridComponent =>
-  createConnectedGrid({ name }, GridComponent);
+const reduxDatagrid = (options) => GridComponent =>
+  createConnectedGrid(options, GridComponent);
 
 export default reduxDatagrid;
