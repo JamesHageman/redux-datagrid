@@ -3,6 +3,7 @@ import {
   groupedDataSelector,
 } from '../src/selectors';
 import $ from 'assert';
+import { fromJS } from 'immutable';
 
 describe('selectors', () => {
   let input;
@@ -60,7 +61,7 @@ describe('selectors', () => {
     });
 
     it('should do nothing when no searchText', () => {
-      $.equal(filteredDataSelector(input), data);
+      $.strictEqual(filteredDataSelector(input), data);
     });
 
     it('can search by name', () => {
@@ -137,6 +138,11 @@ describe('selectors', () => {
         { id: 5, name: 'strawberry', type: 'bar' },
       ]);
     });
+
+    it('should not modify data when an unknown sortBy is passed', () => {
+      input.state.sortBy = 'unknownProperty';
+      $.strictEqual(filteredDataSelector(input), data);
+    });
   });
 
   describe('groupedDataSelector', () => {
@@ -165,6 +171,50 @@ describe('selectors', () => {
       $.deepEqual(groupedDataSelector(input), {
         foo: [ { id: 1, name: 'apple', type: 'foo' } ],
         bar: [ { id: 4, name: 'pineapple', type: 'bar' } ],
+      });
+    });
+  });
+
+  describe('with Immutable', () => {
+    const immutableDataGetter = (row, dataKey) => row.get(dataKey);
+
+    beforeEach(() => {
+      data = fromJS(data);
+      input.props.data = data;
+    });
+
+    it('passes immutable data through', () => {
+      $.strictEqual(filteredDataSelector(input), data);
+    });
+
+    context('with proper columns', () => {
+      beforeEach(() => {
+        input.options.columns = [{
+          dataKey: 'name',
+          cellDataGetter: immutableDataGetter,
+        }, {
+          dataKey: 'type',
+          cellDataGetter: immutableDataGetter,
+        }];
+      });
+
+      it('can sort immutable data with a cellDataGetter', () => {
+        input.state.sortBy = 'name';
+
+        $.deepEqual(filteredDataSelector(input).toJS(), [
+          { id: 1, name: 'apple', type: 'foo' },
+          { id: 3, name: 'banana', type: 'foo' },
+          { id: 2, name: 'orange', type: 'foo' },
+          { id: 4, name: 'pineapple', type: 'bar' },
+          { id: 5, name: 'strawberry', type: 'bar' },
+        ]);
+      });
+
+      it('can search by name', () => {
+        input.state.searchText = 'banana';
+        $.deepEqual(filteredDataSelector(input).toJS(), [
+          { id: 3, name: 'banana', type: 'foo' },
+        ]);
       });
     });
   });

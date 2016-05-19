@@ -5,11 +5,31 @@ const columnDefaults = {
 };
 
 const searchIndex = columns => (object) => {
-  return columns.map((col, i) =>
-    col.cellDataGetter(object, col.dataKey, i)
-  ).filter(s => !!s).map(s => s.toString().trim().toLowerCase())
-    .join(' ');
+  return columns.reduce((words, col) => {
+    const s = col.cellDataGetter(object, col.dataKey);
+    if (!s) {
+      return words;
+    }
+
+    return words + ' ' + s.toString().trim().toLowerCase();
+  }, '');
 };
+
+function findColumn(dataKey, columns) {
+  if (dataKey === null) {
+    return null;
+  }
+
+  const n = columns.length;
+
+  for (let i = 0; i < n; i++) {
+    if (columns[i].dataKey === dataKey) {
+      return columns[i];
+    }
+  }
+
+  return null;
+}
 
 const columnsInputSelector = ({ props, options }) => {
   if (props.columns) {
@@ -64,19 +84,32 @@ const createDefaultPropSelector = (stateKey, propKey) => ({ state, props }) => {
 };
 
 const sortBySelector = createDefaultPropSelector('sortBy', 'defaultSortBy');
+
+const sortByColumnSelector = createSelector(
+  sortBySelector,
+  columnsSelector,
+  findColumn
+);
+
 const groupBySelector = createDefaultPropSelector('groupBy', 'defaultGroupBy');
 
+const groupByColumnSelector = createSelector(
+  groupBySelector,
+  columnsSelector,
+  findColumn
+);
+
 const sortedDataSelector = createSelector(
-  sortBySelector,
+  sortByColumnSelector,
   dataSelector,
-  (sortBy, data) => {
-    if (sortBy === null) {
+  (sortByColumn, data) => {
+    if (sortByColumn === null) {
       return data;
     }
 
     return data.slice().sort((a, b) => {
-      const aa = a[sortBy];
-      const bb = b[sortBy];
+      const aa = sortByColumn.cellDataGetter(a, sortByColumn.dataKey);
+      const bb = sortByColumn.cellDataGetter(b, sortByColumn.dataKey);
 
       if (aa === bb) {
         return 0;
@@ -91,7 +124,11 @@ const dataWordIndexSelector = createSelector(
   sortedDataSelector,
   columnsSelector,
   (data, columns) => {
-    return data.map(searchIndex(columns));
+    const index = searchIndex(columns);
+    return data.reduce((acc, object) => {
+      acc.push(index(object));
+      return acc;
+    }, []);
   },
 );
 
@@ -109,13 +146,13 @@ export const filteredDataSelector = createSelector(
 );
 
 export const groupedDataSelector = createSelector(
-  groupBySelector,
+  groupByColumnSelector,
   filteredDataSelector,
-  (groupBy, data) => {
-    if (groupBy === null) { return null; }
+  (groupByColumn, data) => {
+    if (groupByColumn === null) { return null; }
 
     return data.reduce((groups, object) => {
-      const key = object[groupBy];
+      const key = groupByColumn.cellDataGetter(object, groupByColumn.dataKey);
       if (!groups[key]) {
         groups[key] = [object];
       } else {
