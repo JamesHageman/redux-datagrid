@@ -13,7 +13,7 @@ const Root = ({ children }) => <div className="bg-white">
     </nav>
   </header>
   <main className="flex">
-    <nav className="fixed-width-1 bg-darken-2 p1">
+    <nav className="bg-darken-2 p1" style={{minWidth: 140}}>
       <Link to="/">Getting Started</Link>
       <h3>Examples</h3>
       <ul className="list-reset">
