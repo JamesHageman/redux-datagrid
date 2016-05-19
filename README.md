@@ -1,6 +1,7 @@
 # redux-datagrid
 
 [![CircleCI](https://circleci.com/gh/JamesHageman/redux-datagrid/tree/master.svg?style=svg)](https://circleci.com/gh/JamesHageman/redux-datagrid/tree/master)
+<- "Passed" includes 100% code coverage
 
 A Higher-Order Component for filtering, sorting and grouping in data tables. 
 Inspired by redux-form. Still a WIP.
