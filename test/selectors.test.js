@@ -198,7 +198,7 @@ describe('selectors', () => {
         }];
       });
 
-      it('can sort immutable data with a cellDataGetter', () => {
+      it('should sort immutable data with a cellDataGetter', () => {
         input.state.sortBy = 'name';
 
         $.deepEqual(filteredDataSelector(input).toJS(), [
@@ -210,10 +210,27 @@ describe('selectors', () => {
         ]);
       });
 
-      it('can search by name', () => {
+      it('should search by name', () => {
         input.state.searchText = 'banana';
         $.deepEqual(filteredDataSelector(input).toJS(), [
           { id: 3, name: 'banana', type: 'foo' },
+        ]);
+      });
+
+      it('should group by type', () => {
+        input.state.groupBy = 'type';
+        const groups = groupedDataSelector(input);
+        $.ok(groups);
+
+        $.deepEqual(groups.foo.map(x => x.toJS()), [
+          { id: 1, name: 'apple', type: 'foo' },
+          { id: 2, name: 'orange', type: 'foo' },
+          { id: 3, name: 'banana', type: 'foo' },
+        ]);
+
+        $.deepEqual(groups.bar.map(x => x.toJS()), [
+          { id: 4, name: 'pineapple', type: 'bar' },
+          { id: 5, name: 'strawberry', type: 'bar' },
         ]);
       });
     });
