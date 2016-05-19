@@ -1,5 +1,7 @@
 import React from 'react';
-import { reduxDatagrid } from '../../../src';
+import { reduxDatagrid } from 'redux-datagrid';
+
+const itemClass = 'p1 mb1 border rounded bg-white flex items-center max-width-1';
 
 const BasicList = ({ fullData, data, searchText, handleSearchTextChange }) => <div>
   <input
@@ -9,10 +11,9 @@ const BasicList = ({ fullData, data, searchText, handleSearchTextChange }) => <d
   Showing {data.length} / {fullData.length}
   <ul className="list-reset">
     { data.map(row =>
-      <li key={row._id} className="p1 mb1 border rounded flex items-center">
+      <li key={row._id} className={itemClass}>
         <img src={row.picture} className="mr1"/>
         <div className="mr1 flex-auto">{row.email}</div>
-        <div>{row.company}</div>
       </li>
     )}
   </ul>
@@ -22,6 +23,5 @@ export default reduxDatagrid({
   name: 'basic-list',
   columns: [
     'email',
-    'company',
   ],
 })(BasicList);

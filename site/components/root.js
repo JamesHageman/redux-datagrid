@@ -27,7 +27,7 @@ const Root = ({ children }) => <div className="bg-white">
       { children }
     </section>
   </main>
-  <footer className="py2 px1 bg-darken-1 clearfix">
+  <footer className="pt2 pb4 px1 bg-darken-1 clearfix">
     <div className="center">
       Written by <a href="https://github.com/JamesHageman">James Hageman</a>
     </div>

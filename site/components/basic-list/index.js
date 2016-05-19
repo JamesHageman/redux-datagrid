@@ -7,7 +7,7 @@ import code from '!!raw!./list.js';
 const BasicListExample = () => <div>
   <h2>Basic List</h2>
   <CodeTabs code={code}>
-    <BasicList data={people} defaultSortBy="email"/>
+    <BasicList data={people}/>
   </CodeTabs>
 </div>;
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import Highlight from 'react-highlight';
 
 class CodeTabs extends React.Component {
   constructor() {
@@ -16,12 +17,14 @@ class CodeTabs extends React.Component {
         <div className="border-bottom clearfix">
           <a className="col-right" style={{cursor: 'pointer'}}
             onClick={this.showCode(!showCode)}>
-            { showCode ? 'Example' : 'Code'}
+            { showCode ? 'View Example' : 'View Source'}
           </a>
         </div>
-        <div className="p1 bg-darken-1">
-          { showCode ? <pre className="m0">{code}</pre> : children}
-        </div>
+        { showCode ? <Highlight className="javascript">{code}</Highlight> :
+          <div className="p1 bg-darken-1">
+            { children }
+          </div>
+        }
       </div>
     );
   }

@@ -25,6 +25,12 @@ module.exports = {
     ],
   },
 
+  resolve: {
+    alias: {
+      'redux-datagrid': path.join(__dirname, 'src'),
+    },
+  },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: './site/index.html',
