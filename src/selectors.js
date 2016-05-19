@@ -31,6 +31,18 @@ function findColumn(dataKey, columns) {
   return null;
 }
 
+const createDefaultPropSelector = (stateKey, propKey) => ({ state, props }) => {
+  if (state[stateKey]) {
+    return state[stateKey];
+  }
+
+  if (props[propKey]) {
+    return props[propKey];
+  }
+
+  return null;
+};
+
 const columnsInputSelector = ({ props, options }) => {
   if (props.columns) {
     return props.columns;
@@ -44,122 +56,116 @@ const columnsInputSelector = ({ props, options }) => {
    as props or in createConnectedGrid()`);
 };
 
-const columnsSelector = createSelector(columnsInputSelector,
-  columnDefs => columnDefs.map(col => {
-    if (typeof col === 'string') {
+export function createSelectors() {
+
+  const columnsSelector = createSelector(
+    columnsInputSelector,
+    columnDefs => columnDefs.map(col => {
+      if (typeof col === 'string') {
+        return {
+          ...columnDefaults,
+          dataKey: col,
+        };
+      }
+
+      if (!col || !col.dataKey || typeof col.dataKey !== 'string') {
+        throw new Error(`Columns defs must either be a string or an object with
+                        a dataKey string`);
+      }
+
       return {
         ...columnDefaults,
-        dataKey: col,
+        ...col,
       };
-    }
+    })
+  );
 
-    if (!col || !col.dataKey || typeof col.dataKey !== 'string') {
-      throw new Error(`Columns defs must either be a string or an object with
-                      a dataKey string`);
-    }
+  const searchTextSelector = ({ state }) => state.searchText;
+  const searchTermSelector = createSelector(
+    searchTextSelector, text => text.trim().toLowerCase()
+  );
+  const dataSelector = ({ props }) => props.data;
 
-    return {
-      ...columnDefaults,
-      ...col,
-    };
-  })
-);
+  const sortBySelector = createDefaultPropSelector('sortBy', 'defaultSortBy');
 
-const searchTextSelector = ({ state }) => state.searchText;
-const searchTermSelector = createSelector(
-  searchTextSelector, text => text.trim().toLowerCase()
-);
-const dataSelector = ({ props }) => props.data;
+  const sortByColumnSelector = createSelector(
+    sortBySelector,
+    columnsSelector,
+    findColumn
+  );
 
-const createDefaultPropSelector = (stateKey, propKey) => ({ state, props }) => {
-  if (state[stateKey]) {
-    return state[stateKey];
-  }
+  const groupBySelector = createDefaultPropSelector('groupBy', 'defaultGroupBy');
 
-  if (props[propKey]) {
-    return props[propKey];
-  }
+  const groupByColumnSelector = createSelector(
+    groupBySelector,
+    columnsSelector,
+    findColumn
+  );
 
-  return null;
-};
-
-const sortBySelector = createDefaultPropSelector('sortBy', 'defaultSortBy');
-
-const sortByColumnSelector = createSelector(
-  sortBySelector,
-  columnsSelector,
-  findColumn
-);
-
-const groupBySelector = createDefaultPropSelector('groupBy', 'defaultGroupBy');
-
-const groupByColumnSelector = createSelector(
-  groupBySelector,
-  columnsSelector,
-  findColumn
-);
-
-const sortedDataSelector = createSelector(
-  sortByColumnSelector,
-  dataSelector,
-  (sortByColumn, data) => {
-    if (sortByColumn === null) {
-      return data;
-    }
-
-    return data.slice().sort((a, b) => {
-      const aa = sortByColumn.cellDataGetter(a, sortByColumn.dataKey);
-      const bb = sortByColumn.cellDataGetter(b, sortByColumn.dataKey);
-
-      if (aa === bb) {
-        return 0;
+  const sortedDataSelector = createSelector(
+    sortByColumnSelector,
+    dataSelector,
+    (sortByColumn, data) => {
+      if (sortByColumn === null) {
+        return data;
       }
 
-      return aa > bb ? 1 : -1;
-    });
-  }
-);
+      return data.slice().sort((a, b) => {
+        const aa = sortByColumn.cellDataGetter(a, sortByColumn.dataKey);
+        const bb = sortByColumn.cellDataGetter(b, sortByColumn.dataKey);
 
-const dataWordIndexSelector = createSelector(
-  sortedDataSelector,
-  columnsSelector,
-  (data, columns) => {
-    const index = searchIndex(columns);
-    return data.reduce((acc, object) => {
-      acc.push(index(object));
-      return acc;
-    }, []);
-  },
-);
+        if (aa === bb) {
+          return 0;
+        }
 
-export const filteredDataSelector = createSelector(
-  sortedDataSelector,
-  dataWordIndexSelector,
-  searchTermSelector,
-  (data, dataWords, searchText) => {
-    if (!searchText) { return data; }
+        return aa > bb ? 1 : -1;
+      });
+    }
+  );
 
-    return data.filter((row, i) => {
-      return dataWords[i].search(searchText) >= 0;
-    });
-  }
-);
+  const dataWordIndexSelector = createSelector(
+    sortedDataSelector,
+    columnsSelector,
+    (data, columns) => {
+      const index = searchIndex(columns);
+      return data.reduce((acc, object) => {
+        acc.push(index(object));
+        return acc;
+      }, []);
+    },
+  );
 
-export const groupedDataSelector = createSelector(
-  groupByColumnSelector,
-  filteredDataSelector,
-  (groupByColumn, data) => {
-    if (groupByColumn === null) { return null; }
+  const filteredDataSelector = createSelector(
+    sortedDataSelector,
+    dataWordIndexSelector,
+    searchTermSelector,
+    (data, dataWords, searchText) => {
+      if (!searchText) { return data; }
 
-    return data.reduce((groups, object) => {
-      const key = groupByColumn.cellDataGetter(object, groupByColumn.dataKey);
-      if (!groups[key]) {
-        groups[key] = [object];
-      } else {
-        groups[key].push(object);
-      }
+      return data.filter((row, i) => {
+        return dataWords[i].search(searchText) >= 0;
+      });
+    }
+  );
 
-      return groups;
-    }, {});
-  }
-);
+  const groupedDataSelector = createSelector(
+    groupByColumnSelector,
+    filteredDataSelector,
+    (groupByColumn, data) => {
+      if (groupByColumn === null) { return null; }
+
+      return data.reduce((groups, object) => {
+        const key = groupByColumn.cellDataGetter(object, groupByColumn.dataKey);
+        if (!groups[key]) {
+          groups[key] = [object];
+        } else {
+          groups[key].push(object);
+        }
+
+        return groups;
+      }, {});
+    }
+  );
+
+  return { filteredDataSelector, groupedDataSelector };
+}
