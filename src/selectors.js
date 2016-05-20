@@ -166,5 +166,11 @@ export function createSelectors() {
     }
   );
 
-  return { filteredDataSelector, groupedDataSelector };
+  return {
+    columnsSelector,
+    filteredDataSelector,
+    groupedDataSelector,
+    sortBySelector,
+    groupBySelector,
+  };
 }
