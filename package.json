@@ -1,6 +1,6 @@
 {
   "name": "react-redux-starter",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "A boiler-plate setup for React/Redux applications",
   "license": "MIT",
   "engines": {
@@ -83,6 +83,7 @@
     "postcss-modules-local-by-default": "^1.0.1",
     "raw-loader": "^0.5.1",
     "react": "^15.0.1",
+    "react-addons-shallow-compare": "^15.0.2",
     "react-addons-test-utils": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-highlight": "^0.8.0",
@@ -90,6 +91,7 @@
     "react-redux": "^4.4.2",
     "react-router": "^2.0.0-rc5",
     "react-router-redux": "^4.0.0",
+    "react-virtualized": "^7.0.5",
     "redux": "^3.3.1",
     "redux-form": "^5.2.1",
     "redux-localstorage": "^0.4.0",
