@@ -1,17 +1,10 @@
-import { createSelectors } from './selectors';
-
 const initialState = {};
 
 const initGridState = () => {
-  const { filteredDataSelector, groupedDataSelector } = createSelectors();
   return {
     searchText: '',
     sortBy: null,
     groupBy: null,
-    selectors: {
-      visibleData: filteredDataSelector,
-      groupedData: groupedDataSelector,
-    },
   };
 };
 

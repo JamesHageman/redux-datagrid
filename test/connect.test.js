@@ -84,7 +84,7 @@ describe('reduxDatagrid HOC', () => {
 
     render();
 
-    $.deepEqual(wrapper.prop('data'), [
+    $.deepEqual(wrapper.prop('filteredData'), [
       { id: 1, name: 'apple', type: 'foo' },
       { id: 4, name: 'pineapple', type: 'bar' },
     ]);
