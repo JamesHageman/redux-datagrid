@@ -1,6 +1,6 @@
 {
   "name": "react-redux-starter",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "A boiler-plate setup for React/Redux applications",
   "license": "MIT",
   "engines": {
