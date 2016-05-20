@@ -6,7 +6,7 @@ import people from '../../mock/people';
 
 
 const BasicTableExample = () => <div>
-  <h2>Basic List</h2>
+  <h2>Basic Table</h2>
   <CodeTabs code={code}>
     <BasicTable data={people}/>
   </CodeTabs>
