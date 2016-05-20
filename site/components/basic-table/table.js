@@ -48,9 +48,5 @@ export default reduxDatagrid({
     'address',
     'phone',
     'age',
-    {
-      dataKey: 'decade',
-      cellDataGetter: (row) => Math.floor(row.age / 10) * 10,
-    },
   ],
 })(BasicTable);
