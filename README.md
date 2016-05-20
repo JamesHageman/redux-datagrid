@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/JamesHageman/redux-datagrid.png?label=ready&title=Ready)](https://waffle.io/JamesHageman/redux-datagrid)
 # redux-datagrid
 
 [![CircleCI](https://circleci.com/gh/JamesHageman/redux-datagrid/tree/master.svg?style=svg)](https://circleci.com/gh/JamesHageman/redux-datagrid/tree/master)
