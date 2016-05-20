@@ -3,8 +3,8 @@ const initialState = {};
 const initGridState = () => {
   return {
     searchText: '',
-    sortBy: null,
-    groupBy: null,
+    sortBy: '',
+    groupBy: '',
   };
 };
 

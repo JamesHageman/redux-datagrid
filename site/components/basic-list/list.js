@@ -3,12 +3,26 @@ import { reduxDatagrid } from 'redux-datagrid';
 
 const itemClass = 'p1 mb1 border rounded bg-white flex items-center max-width-1';
 
-const BasicList = ({ datagrid: { data, filtered, controls: { search } }}) => <div>
-  <input
-    className="p1 mr1"
-    placeholder="search..."
-    {...search}/>
-  Showing {filtered.length} / {data.length}
+const BasicList = ({ datagrid: { data, filtered, controls: { search, sortBy } }}) => <div>
+
+  <div>
+    <input
+      className="p1 mr1"
+      placeholder="search..."
+      {...search}/>
+    Showing {filtered.length} / {data.length}
+  </div>
+
+  <div>
+    Sort By
+    <select
+      className="ml1"
+      {...sortBy}>
+      <option value="">None</option>
+      <option value="email">Email</option>
+    </select>
+  </div>
+
   <ul className="list-reset">
     { filtered.map(row =>
       <li key={row._id} className={itemClass}>
