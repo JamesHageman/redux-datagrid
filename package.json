@@ -9,7 +9,7 @@
   "scripts": {
     "prebuild": "npm run clean",
     "build": "cross-env NODE_ENV=production webpack -p",
-    "clean": "rimraf dist/ coverage/",
+    "clean": "rimraf gh-pages/ coverage/",
     "cover": "nyc check-coverage --lines 100 --functions 100 --branches 100",
     "dev": "cross-env NODE_ENV=development webpack-dev-server -d --inline --hot --progress --no-info",
     "lint": "npm run lint-js",
