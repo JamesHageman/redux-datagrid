@@ -8,7 +8,7 @@ const BasicList = ({ datagrid: { data, filtered, controls: { search, sortBy } }}
   <div>
     <input
       className="p1 mr1"
-      placeholder="search..."
+      placeholder="Search"
       {...search}/>
     Showing {filtered.length} / {data.length}
   </div>
