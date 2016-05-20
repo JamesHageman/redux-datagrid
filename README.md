@@ -1,11 +1,10 @@
 [![Stories in Ready](https://badge.waffle.io/JamesHageman/redux-datagrid.png?label=ready&title=Ready)](https://waffle.io/JamesHageman/redux-datagrid)
-# redux-datagrid
-
 [![CircleCI](https://circleci.com/gh/JamesHageman/redux-datagrid/tree/master.svg?style=svg)](https://circleci.com/gh/JamesHageman/redux-datagrid/tree/master)
-<- "Passed" includes 100% code coverage
-
+# redux-datagrid
 A Higher-Order Component for filtering, sorting and grouping in data tables. 
 Inspired by redux-form. Still a WIP.
+
+Issues and features are managed on [waffle.io](https://waffle.io/JamesHageman/redux-datagrid).
 
 ## npm scripts
 
