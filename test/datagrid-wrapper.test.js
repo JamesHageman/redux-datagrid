@@ -39,9 +39,11 @@ describe('DatagridWrapper', () => {
     wrapper = shallow(<DatagridWrapper
       initDatagrid={() => {}}
       Component={Child} foo="foo" bar="bar"/>);
-    $.deepEqual(wrapper.find(Child).props(), {
+    const childProps = wrapper.find(Child).props();
+    $.deepEqual(childProps, {
       foo: 'foo',
       bar: 'bar',
+      datagrid: childProps.datagrid,
     });
   });
 });

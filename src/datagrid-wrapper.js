@@ -1,14 +1,22 @@
 import React from 'react';
 
-const { func, object, string, arrayOf } = React.PropTypes;
+const { func, string, any, array, object } = React.PropTypes;
 
 export default class DatagridWrapper extends React.Component {
   static propTypes = {
     Component: func,
     initDatagrid: func,
-    data: arrayOf(object.isRequired).isRequired,
-    defaultSortBy: string,
-    defaultGroupBy: string,
+    columns: array,
+    name: string,
+    searchText: string,
+    sortBy: string,
+    groupBy: string,
+    handleSearchTextChange: func,
+    handleGroupByChange: func,
+    handleSortByChange: func,
+    filteredData: any, // should be array or array like (i.e. Immutable.List)
+    fullData: any, // ditto
+    groupedData: object,
   }
 
   componentDidMount() {
@@ -21,6 +29,17 @@ export default class DatagridWrapper extends React.Component {
     const {
       Component,
       initDatagrid, // eslint-disable-line no-unused-vars
+      columns,
+      name,
+      searchText,
+      sortBy,
+      groupBy,
+      handleSearchTextChange,
+      handleGroupByChange,
+      handleSortByChange,
+      filteredData,
+      fullData,
+      groupedData,
       ...otherProps,
     } = this.props;
 
@@ -28,6 +47,28 @@ export default class DatagridWrapper extends React.Component {
       return null;
     }
 
-    return <Component {...otherProps}/>;
+    const datagridProps = {
+      name: name,
+      columns: columns,
+      data: fullData,
+      filtered: filteredData,
+      grouped: groupedData,
+      controls: {
+        search: {
+          value: searchText,
+          onChange: handleSearchTextChange,
+        },
+        sortBy: {
+          value: sortBy,
+          onChange: handleSortByChange,
+        },
+        groupBy: {
+          value: groupBy,
+          onChange: handleGroupByChange,
+        },
+      },
+    };
+
+    return <Component datagrid={datagridProps} {...otherProps}/>;
   }
 }

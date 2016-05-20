@@ -1,17 +1,10 @@
-import { createSelectors } from './selectors';
-
 const initialState = {};
 
 const initGridState = () => {
-  const { filteredDataSelector, groupedDataSelector } = createSelectors();
   return {
     searchText: '',
-    sortBy: null,
-    groupBy: null,
-    selectors: {
-      visibleData: filteredDataSelector,
-      groupedData: groupedDataSelector,
-    },
+    sortBy: '',
+    groupBy: '',
   };
 };
 
@@ -40,6 +33,24 @@ export default (state = initialState, action) => {
       [name]: {
         ...state[name],
         searchText: action.payload.text,
+      },
+    };
+
+  case 'redux-datagrid/CHANGE_SORT_BY':
+    return {
+      ...state,
+      [name]: {
+        ...state[name],
+        sortBy: action.payload.value,
+      },
+    };
+
+  case 'redux-datagrid/CHANGE_GROUP_BY':
+    return {
+      ...state,
+      [name]: {
+        ...state[name],
+        groupBy: action.payload.value,
       },
     };
 

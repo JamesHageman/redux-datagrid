@@ -20,8 +20,8 @@ describe('reduxDatagrid reducer', () => {
       'test-grid': {
         ...state['test-grid'],
         searchText: '',
-        groupBy: null,
-        sortBy: null,
+        groupBy: '',
+        sortBy: '',
       },
     });
   });

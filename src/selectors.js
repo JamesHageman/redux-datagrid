@@ -16,7 +16,7 @@ const searchIndex = columns => (object) => {
 };
 
 function findColumn(dataKey, columns) {
-  if (dataKey === null) {
+  if (!dataKey) {
     return null;
   }
 
@@ -31,7 +31,7 @@ function findColumn(dataKey, columns) {
   return null;
 }
 
-const createDefaultPropSelector = (stateKey, propKey) => ({ state, props }) => {
+const createDefaultPropSelector = (stateKey, propKey, defaultValue ) => ({ state, props }) => {
   if (state[stateKey]) {
     return state[stateKey];
   }
@@ -40,7 +40,7 @@ const createDefaultPropSelector = (stateKey, propKey) => ({ state, props }) => {
     return props[propKey];
   }
 
-  return null;
+  return defaultValue;
 };
 
 const columnsInputSelector = ({ props, options }) => {
@@ -85,7 +85,7 @@ export function createSelectors() {
   );
   const dataSelector = ({ props }) => props.data;
 
-  const sortBySelector = createDefaultPropSelector('sortBy', 'defaultSortBy');
+  const sortBySelector = createDefaultPropSelector('sortBy', 'defaultSortBy', '');
 
   const sortByColumnSelector = createSelector(
     sortBySelector,
@@ -93,7 +93,7 @@ export function createSelectors() {
     findColumn
   );
 
-  const groupBySelector = createDefaultPropSelector('groupBy', 'defaultGroupBy');
+  const groupBySelector = createDefaultPropSelector('groupBy', 'defaultGroupBy', '');
 
   const groupByColumnSelector = createSelector(
     groupBySelector,
@@ -151,7 +151,9 @@ export function createSelectors() {
     groupByColumnSelector,
     filteredDataSelector,
     (groupByColumn, data) => {
-      if (groupByColumn === null) { return null; }
+      if (groupByColumn === null) {
+        return null;
+      }
 
       return data.reduce((groups, object) => {
         const key = groupByColumn.cellDataGetter(object, groupByColumn.dataKey);
@@ -166,5 +168,11 @@ export function createSelectors() {
     }
   );
 
-  return { filteredDataSelector, groupedDataSelector };
+  return {
+    columnsSelector,
+    filteredDataSelector,
+    groupedDataSelector,
+    sortBySelector,
+    groupBySelector,
+  };
 }
