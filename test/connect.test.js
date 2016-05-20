@@ -3,7 +3,6 @@ import $ from 'assert';
 import reduxDatagrid from '../src/connect';
 import { shallow } from 'enzyme';
 import { createStore, combineReducers } from 'redux';
-import { Provider } from 'react-redux';
 import reducer from '../src/reducer';
 import DatagridWrapper from '../src/datagrid-wrapper';
 import { spy } from 'sinon';
@@ -78,6 +77,8 @@ describe('reduxDatagrid HOC', () => {
     $.equal(wrapper.prop('fullData'), data);
   });
 
+  // These tests also rely on the reducer working as expected
+
   it('should filter data', () => {
     setup();
     wrapper.prop('handleSearchTextChange').call(null, ({ target: { value: 'appl'}}));
@@ -90,6 +91,39 @@ describe('reduxDatagrid HOC', () => {
     ]);
 
     $.equal(wrapper.prop('fullData'), data);
+  });
+
+  it('should sort data', () => {
+    setup();
+    wrapper.prop('handleSortByChange').call(null, { target: { value: 'name' }});
+
+    render();
+
+    $.deepEqual(wrapper.prop('filteredData'), [
+      { id: 1, name: 'apple', type: 'foo' },
+      { id: 3, name: 'banana', type: 'foo' },
+      { id: 2, name: 'orange', type: 'foo' },
+      { id: 4, name: 'pineapple', type: 'bar' },
+      { id: 5, name: 'strawberry', type: 'bar' },
+    ]);
+  });
+
+  it('should group data', () => {
+    setup();
+    wrapper.prop('handleGroupByChange').call(null, { target: { value: 'type' }});
+
+    render();
+    $.deepEqual(wrapper.prop('groupedData'), {
+      foo: [
+        { id: 1, name: 'apple', type: 'foo' },
+        { id: 2, name: 'orange', type: 'foo' },
+        { id: 3, name: 'banana', type: 'foo' },
+      ],
+      bar: [
+        { id: 4, name: 'pineapple', type: 'bar' },
+        { id: 5, name: 'strawberry', type: 'bar' },
+      ],
+    });
   });
 
   it('should pass nothing from state when the grid hasn\'t been initialized', () => {

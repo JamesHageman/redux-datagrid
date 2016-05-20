@@ -36,6 +36,24 @@ export default (state = initialState, action) => {
       },
     };
 
+  case 'redux-datagrid/CHANGE_SORT_BY':
+    return {
+      ...state,
+      [name]: {
+        ...state[name],
+        sortBy: action.payload.value,
+      },
+    };
+
+  case 'redux-datagrid/CHANGE_GROUP_BY':
+    return {
+      ...state,
+      [name]: {
+        ...state[name],
+        groupBy: action.payload.value,
+      },
+    };
+
   default:
     return state;
   }
