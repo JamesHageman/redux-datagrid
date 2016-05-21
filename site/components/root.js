@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { version } from '!!json!../../package.json';
 
 const Root = ({ children }) => <div className="bg-white">
   <header className="p1 bg-darken-1">
@@ -8,8 +9,10 @@ const Root = ({ children }) => <div className="bg-white">
       <lead>The easiest way to sort, filter and group your data</lead>
     </div>
     <nav className="clearfix">
-      <a className="col-right"
-        href="https://github.com/JamesHageman/redux-datagrid">Github</a>
+      <div className="col-right">
+        {`v${version} | `}
+        <a href="https://github.com/JamesHageman/redux-datagrid">Github</a>
+      </div>
     </nav>
   </header>
   <main className="flex">
