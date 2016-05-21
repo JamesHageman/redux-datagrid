@@ -1,7 +1,8 @@
 {
-  "name": "react-redux-starter",
-  "version": "0.0.1",
-  "description": "A boiler-plate setup for React/Redux applications",
+  "name": "redux-datagrid",
+  "main": "./lib/index.js",
+  "version": "0.0.2",
+  "description": "A Higher-Order Component for sorting, filtering and grouping data",
   "license": "MIT",
   "engines": {
     "node": "4.x"
@@ -14,12 +15,13 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server -d --inline --hot --progress --no-info",
     "lint": "npm run lint-js",
     "lint-js": "eslint './src/**/*.js'",
-    "postinstall": "npm run build",
     "start": "cross-env NODE_ENV=production http-server ./gh-pages/",
     "pretest": "npm run clean && npm run lint",
     "test": "nyc --reporter=lcov --reporter=text-summary mocha",
     "posttest": "npm run cover",
-    "test:watch": "mocha --watch"
+    "test:watch": "mocha --watch",
+    "lib": "webpack --config webpack.lib.config.js",
+    "prepublish": "npm run lib"
   },
   "nyc": {
     "exclude": [
@@ -111,24 +113,23 @@
     "webpack-hot-middleware": "^2.6.4",
     "webpack-split-by-path": "0.0.8"
   },
-  "dependencies": {
-    "express": "^4.13.3",
-    "helmet": "^2.0.0",
-    "http-proxy": "^1.12.1",
-    "reselect": "^2.5.1",
-    "winston": "^2.1.1"
+  "peerDependencies": {
+    "reselect": "2.x",
+    "react-redux": "4.x",
+    "react": "0.14.x || 15.x"
   },
   "keywords": [
     "react",
     "redux",
-    "starter",
-    "seed"
+    "datagrid",
+    "datatable",
+    "hoc"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/rangle/react-redux-starter.git"
+    "url": "git://github.com/JamesHageman/redux-datagrid"
   },
   "bugs": {
-    "url": "https://github.com/rangle/rangle-starter/issues"
+    "url": "https://github.com/JamesHageman/redux-datagrid/issues"
   }
 }
