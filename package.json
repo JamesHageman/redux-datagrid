@@ -19,7 +19,9 @@
     "pretest": "npm run clean && npm run lint",
     "test": "nyc --reporter=lcov --reporter=text-summary mocha",
     "posttest": "npm run cover",
-    "test:watch": "mocha --watch"
+    "test:watch": "mocha --watch",
+    "deploy": "npm run build && npm run gh-pages",
+    "gh-pages": "git checkout gh-pages && git add gh-pages && git commit -m \"Update build\" && git subtree push --prefix=gh-pages origin gh-pages"
   },
   "nyc": {
     "exclude": [
