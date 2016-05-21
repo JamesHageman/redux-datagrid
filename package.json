@@ -131,5 +131,8 @@
   },
   "bugs": {
     "url": "https://github.com/JamesHageman/redux-datagrid/issues"
+  },
+  "dependencies": {
+    "json-loader": "^0.5.4"
   }
 }
