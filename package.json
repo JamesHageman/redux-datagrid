@@ -1,7 +1,7 @@
 {
   "name": "redux-datagrid",
   "main": "./lib/index.js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A Higher-Order Component for sorting, filtering and grouping data",
   "license": "MIT",
   "engines": {
