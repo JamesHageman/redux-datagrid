@@ -7,5 +7,6 @@ dependencies:
 deployment:
   master:
     branch: master
+    owner: circleci
     commands:
       - npm run build && npm run deploy
