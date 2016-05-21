@@ -10,7 +10,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'gh-pages'),
     filename: '[name].[hash].js',
-    publicPath: '/',
+    publicPath: '/redux-datagrid/',
   },
 
   devtool: 'source-map',

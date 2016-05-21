@@ -4,3 +4,8 @@ machine:
 dependencies:
   override:
     - npm install --dev
+deployment:
+  master:
+    branch: master
+    commands:
+      - npm run build && npm run deploy
