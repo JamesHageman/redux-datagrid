@@ -21,7 +21,8 @@
     "posttest": "npm run cover",
     "test:watch": "mocha --watch",
     "lib": "webpack --config webpack.lib.config.js",
-    "prepublish": "npm run lib"
+    "prepublish": "npm run lib",
+    "deploy": "gh-pages -d gh-pages"
   },
   "nyc": {
     "exclude": [
@@ -71,6 +72,7 @@
     "eslint-loader": "^1.1.1",
     "eslint-plugin-react": "^5.0.0",
     "file-loader": "^0.8.4",
+    "gh-pages": "^0.11.0",
     "history": "^2.0.1",
     "html-webpack-plugin": "^2.9.0",
     "http-server": "^0.9.0",
