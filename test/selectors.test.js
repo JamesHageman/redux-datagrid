@@ -129,6 +129,26 @@ describe('selectors', () => {
       ]);
     });
 
+    it('should sort in descending order', () => {
+      input.props.defaultSortBy = 'name';
+      input.state.sortDirection = 'desc';
+      $.deepEqual(filteredDataSelector(input), [
+        { id: 5, name: 'strawberry', type: 'bar' },
+        { id: 4, name: 'pineapple', type: 'bar' },
+        { id: 2, name: 'orange', type: 'foo' },
+        { id: 3, name: 'banana', type: 'foo' },
+        { id: 1, name: 'apple', type: 'foo' },
+      ]);
+    });
+
+    it('should throw when an invalid sort direction is passed', () => {
+      input.props.defaultSortBy = 'name';
+      input.state.sortDirection = 'foo';
+      $.throws(() => {
+        filteredDataSelector(input);
+      }, Error);
+    });
+
     it('should do a stable sort', () => {
       input.state.sortBy = 'name';
       input.props.data.push({ id: 6, name: 'apple', type: 'baz '});

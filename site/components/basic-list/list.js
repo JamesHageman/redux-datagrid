@@ -3,7 +3,7 @@ import { reduxDatagrid } from 'redux-datagrid';
 
 const itemClass = 'p1 mb1 border rounded bg-white flex items-center max-width-1';
 
-const BasicList = ({ datagrid: { data, filtered, controls: { search, sortBy } }}) => <div>
+const BasicList = ({ datagrid: { data, filtered, controls: { search, sortBy, sortDirection } }}) => <div>
 
   <div>
     <input
@@ -20,6 +20,16 @@ const BasicList = ({ datagrid: { data, filtered, controls: { search, sortBy } }}
       {...sortBy}>
       <option value="">None</option>
       <option value="email">Email</option>
+    </select>
+  </div>
+
+  <div>
+    Sort Direction
+    <select
+      className="ml1"
+      {...sortDirection}>
+      <option value="asc">Ascending</option>
+      <option value="desc">Descending</option>
     </select>
   </div>
 

@@ -32,7 +32,7 @@ describe('reduxDatagrid reducer', () => {
       type: 'redux-datagrid/CHANGE_SEARCH_TEXT',
       payload: {
         name: 'test-grid',
-        text: 'foo',
+        value: 'foo',
       },
     });
 
@@ -45,7 +45,7 @@ describe('reduxDatagrid reducer', () => {
         type: 'redux-datagrid/CHANGE_SEARCH_TEXT',
         payload: {
           name: 'bad-grid',
-          text: 'foo',
+          value: 'foo',
         },
       });
     }, 'Action "redux-datagrid/CHANGE_SEARCH_TEXT" called with uninitialized grid "bad-grid"');
@@ -58,5 +58,56 @@ describe('reduxDatagrid reducer', () => {
     });
 
     $.strictEqual(newState, state);
+  });
+
+  it('should set the sort direction to asc', () => {
+    const newState = reducer(state, {
+      type: 'redux-datagrid/CHANGE_SORT_DIRECTION',
+      payload: { name: 'test-grid', value: 'asc' },
+    });
+
+    $.deepEqual(newState, {
+      'test-grid': {
+        ...state['test-grid'],
+        sortDirection: 'asc',
+      },
+    });
+  });
+
+  it('should set the sort direction to desc', () => {
+    const newState = reducer(state, {
+      type: 'redux-datagrid/CHANGE_SORT_DIRECTION',
+      payload: { name: 'test-grid', value: 'desc' },
+    });
+
+    $.deepEqual(newState, {
+      'test-grid': {
+        ...state['test-grid'],
+        sortDirection: 'desc',
+      },
+    });
+  });
+
+  it('should allow case-insensitive sort direction', () => {
+    const newState = reducer(state, {
+      type: 'redux-datagrid/CHANGE_SORT_DIRECTION',
+      payload: { name: 'test-grid', value: 'Desc' },
+    });
+
+    $.deepEqual(newState, {
+      'test-grid': {
+        ...state['test-grid'],
+        sortDirection: 'desc',
+      },
+    });
+  });
+
+  it('should throw when an invalid sort direction is passed', () => {
+    $.throws(() => {
+      reducer(state, {
+        type: 'redux-datagrid/CHANGE_SORT_DIRECTION',
+        payload: { name: 'test-grid', value: 'bar' },
+      });
+    }, Error);
   });
 });

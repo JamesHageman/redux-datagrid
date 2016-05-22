@@ -5,8 +5,28 @@ const initGridState = () => {
     searchText: '',
     sortBy: '',
     groupBy: '',
+    sortDirection: 'asc', // 'asc' | 'desc'
   };
 };
+
+function getSortDirection(value) {
+  const s = value.toLowerCase();
+  if (s === 'asc' || s === 'desc') {
+    return s;
+  }
+
+  throw new Error(`"${value}" is not a valid sort direction, please use "asc" or "desc"`);
+}
+
+function update({ state, name, key, value }) {
+  return {
+    ...state,
+    [name]: {
+      ...state[name],
+      [key]: value,
+    },
+  };
+}
 
 export default (state = initialState, action) => {
   if (!/redux-datagrid\//.test(action.type)) {
@@ -28,31 +48,36 @@ export default (state = initialState, action) => {
 
   switch (action.type) {
   case 'redux-datagrid/CHANGE_SEARCH_TEXT':
-    return {
-      ...state,
-      [name]: {
-        ...state[name],
-        searchText: action.payload.text,
-      },
-    };
+    return update({
+      state,
+      name,
+      key: 'searchText',
+      value: action.payload.value,
+    });
 
   case 'redux-datagrid/CHANGE_SORT_BY':
-    return {
-      ...state,
-      [name]: {
-        ...state[name],
-        sortBy: action.payload.value,
-      },
-    };
+    return update({
+      state,
+      name,
+      key: 'sortBy',
+      value: action.payload.value,
+    });
 
   case 'redux-datagrid/CHANGE_GROUP_BY':
-    return {
-      ...state,
-      [name]: {
-        ...state[name],
-        groupBy: action.payload.value,
-      },
-    };
+    return update({
+      state,
+      name,
+      key: 'groupBy',
+      value: action.payload.value,
+    });
+
+  case 'redux-datagrid/CHANGE_SORT_DIRECTION':
+    return update({
+      state,
+      name,
+      key: 'sortDirection',
+      value: getSortDirection(action.payload.value),
+    });
 
   default:
     return state;

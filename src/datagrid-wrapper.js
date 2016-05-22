@@ -11,9 +11,11 @@ export default class DatagridWrapper extends React.Component {
     searchText: string,
     sortBy: string,
     groupBy: string,
+    sortDirection: string,
     handleSearchTextChange: func,
     handleGroupByChange: func,
     handleSortByChange: func,
+    handleSortDirectionChange: func,
     filteredData: any, // should be array or array like (i.e. Immutable.List)
     fullData: any, // ditto
     groupedData: object,
@@ -34,9 +36,11 @@ export default class DatagridWrapper extends React.Component {
       searchText,
       sortBy,
       groupBy,
+      sortDirection,
       handleSearchTextChange,
       handleGroupByChange,
       handleSortByChange,
+      handleSortDirectionChange,
       filteredData,
       fullData,
       groupedData,
@@ -65,6 +69,10 @@ export default class DatagridWrapper extends React.Component {
         groupBy: {
           value: groupBy,
           onChange: handleGroupByChange,
+        },
+        sortDirection: {
+          value: sortDirection,
+          onChange: handleSortDirectionChange,
         },
       },
     };
