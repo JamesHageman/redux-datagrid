@@ -22,7 +22,7 @@ const Root = ({ children }) => <div className="bg-white">
       <ul className="list-reset">
         <li><Link to="/examples/basic-list">Basic List</Link></li>
         <li><Link to="/examples/basic-table">Basic Table</Link></li>
-        <li>Grouping Table</li>
+        <li><Link to="/examples/grouping">Grouping Table</Link></li>
         <li>Immutable Example</li>
       </ul>
       <h3>API</h3>
