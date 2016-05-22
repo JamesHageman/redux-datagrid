@@ -13,7 +13,7 @@ const BasicTableExample = () => <div>
     to get it cleaned up.
   </p>
   <p>
-    The connected component is called with a default group by like so: <pre>{'<GroupingTable data={data} defaultGroupBy="favoriteFruit">'}</pre>
+    The connected component is called with a default group by like so: <pre>{'<GroupingTable data={data} defaultGroupBy="favoriteFruit"/>'}</pre>
   </p>
   <CodeTabs code={code}>
     <GroupingTable data={people} defaultGroupBy="favoriteFruit"/>
