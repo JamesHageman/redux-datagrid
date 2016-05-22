@@ -6,6 +6,7 @@ import NotFound from './components/not-found';
 import BasicListExample from './components/basic-list';
 import BasicTableExample from './components/basic-table';
 import GroupingTableExample from './components/grouping';
+import ImmutableTableExample from './components/immutable';
 
 export default (
   <Route path="/" component={Root}>
@@ -13,6 +14,7 @@ export default (
     <Route path="/examples/basic-list" component={BasicListExample}/>
     <Route path="/examples/basic-table" component={BasicTableExample}/>
     <Route path="/examples/grouping" component={GroupingTableExample}/>
+    <Route path="/examples/immutable" component={ImmutableTableExample}/>
     <Route path="*" component={NotFound}/>
   </Route>
 );
