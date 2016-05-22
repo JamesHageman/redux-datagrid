@@ -101,7 +101,9 @@ export function createSelectors() {
     findColumn
   );
 
-  const sortedDataSelector = createSelector(
+  const sortDirectionSelector = createDefaultPropSelector('sortDirection', 'defaultSortDirection', 'asc');
+
+  const sortedDataSelectorWithoutDirection = createSelector(
     sortByColumnSelector,
     dataSelector,
     (sortByColumn, data) => {
@@ -119,6 +121,22 @@ export function createSelectors() {
 
         return aa > bb ? 1 : -1;
       });
+    }
+  );
+
+  const sortedDataSelector = createSelector(
+    sortedDataSelectorWithoutDirection,
+    sortDirectionSelector,
+    (data, sortDirection) => {
+      if (sortDirection === 'asc') {
+        return data;
+      }
+
+      if (sortDirection === 'desc') {
+        return data.slice().reverse();
+      }
+
+      throw new Error(`"${ sortDirection }" is not a valid sort direction, use "asc" or "desc"`);
     }
   );
 
