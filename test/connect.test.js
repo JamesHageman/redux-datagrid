@@ -135,6 +135,7 @@ describe('reduxDatagrid HOC', () => {
       handleSearchTextChange: wrapper.prop('handleSearchTextChange'),
       handleGroupByChange: wrapper.prop('handleGroupByChange'),
       handleSortByChange: wrapper.prop('handleSortByChange'),
+      handleSortDirectionChange: wrapper.prop('handleSortDirectionChange'),
       initDatagrid: wrapper.prop('initDatagrid'),
     });
   });
