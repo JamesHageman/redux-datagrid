@@ -3,7 +3,7 @@ import { FlexTable, FlexColumn, AutoSizer } from 'react-virtualized';
 import { reduxDatagrid } from 'redux-datagrid';
 import '!!style!css!react-virtualized/styles.css';
 
-const GroupingTable = ({ datagrid: { data, columns, grouped, controls: { groupBy, search }}}) => {
+const GroupingTable = ({ datagrid: { columns, grouped, controls: { groupBy, search }}}) => {
   return <div>
     <input
       className="p1"
