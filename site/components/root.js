@@ -27,8 +27,9 @@ const Root = ({ children }) => <div className="bg-white">
       </ul>
       <h3>API</h3>
       <ul className="list-reset">
-        <li>reduxDatagrid()</li>
-        <li>Component Props</li>
+        <li><Link to="/docs/redux-datagrid">reduxDatagrid()</Link></li>
+        <li><Link to="/docs/internal-props">Internal Props</Link></li>
+        <li><Link to="/docs/external-props">External Props</Link></li>
       </ul>
     </nav>
     <section className="flex-auto p1">

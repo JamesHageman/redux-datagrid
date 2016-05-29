@@ -1,5 +1,5 @@
 import React from 'react';
-import Highlight from 'react-highlight';
+import Markdown from 'react-markdown';
 
 class CodeTabs extends React.Component {
   constructor() {
@@ -20,7 +20,7 @@ class CodeTabs extends React.Component {
             { showCode ? 'View Example' : 'View Source'}
           </a>
         </div>
-        { showCode ? <Highlight className="javascript">{code}</Highlight> :
+        { showCode ? <Markdown source={processCode(code)} /> :
           <div className="p1 bg-darken-1">
             { children }
           </div>
@@ -33,5 +33,7 @@ class CodeTabs extends React.Component {
     this.setState({ showCode: show });
   }
 }
+
+const processCode = code => '```js\n' + code + '```';
 
 export default CodeTabs;
