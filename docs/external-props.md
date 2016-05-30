@@ -2,7 +2,7 @@
 
 When you use wrap a component with `reduxDatagrid()`, you can pass the wrapped component the following props:
 
-## data : Array<any> | Immutable.List<any> (Required)
+### `data : Array<any> | Immutable.List<any> (Required)`
 
 The raw data source for the datagrid. 
 
@@ -24,7 +24,7 @@ data = data.concat([{ ... }]);
 // or use Immutable instead :)
 ```
 
-## defaultSortBy : string (Optional)
+### `defaultSortBy : string (Optional)`
 
 The default column to sort by. `defaultSortBy` must correspond to a column defined in `reduxDatagrid({ columns: [ ... ] })`. 
 
@@ -42,7 +42,7 @@ return <MyDatagrid defaultSortBy="type" data={ ... } />
 
 If not specified, the data will not be sorted and will be passed through in the same order it came.
 
-## defaultGroupBy : string (Optional)
+### `defaultGroupBy : string (Optional)`
 
 The default column to group by. Like `defaultSortBy`, if not specified, the data will not be grouped.
 
@@ -51,7 +51,7 @@ The default column to group by. Like `defaultSortBy`, if not specified, the data
 return <MyDatagrid defaultGroupBy="type" />
 ```
 
-## defaultSortDirection : 'asc' | 'desc' (Optional)
+### `defaultSortDirection : 'asc' | 'desc' (Optional)`
 
 The default sort direction. If not specified, it will be `asc`. Note that sort direction matters even if `sortBy` is null. In other words, `desc` will reverse your data even if it's not being sorted.
 

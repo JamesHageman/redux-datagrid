@@ -8,7 +8,7 @@ const MyDatagrid = ({ datagrid: { data, filtered }}) => <div>
   // ...
 </div>;
 ```
-## datagrid.data : Array<any> | Immutable.List<any>
+### `datagrid.data : Array<any> | Immutable.List<any>`
 
 The raw data passed from the parent.
 
@@ -23,7 +23,7 @@ const MyDatagrid = ({ datagrid: { data }}) => {
 <MyDatagrid data={ myData } />;
 ```
 
-## datagrid.filtered : Array<any> | Immutable.List<any>
+### `datagrid.filtered : Array<any> | Immutable.List<any>`
  
 The sorted data filtered by your searchText.
 
@@ -36,11 +36,11 @@ const MyDatagrid = ({ datagrid: { data, filtered }}) {
 }
 ```
 
-## datagrid.grouped : { [key : string]: Array<any> } | null
+### `datagrid.grouped : { [key : string]: Array<any> } | null`
 
 An object with data grouped by the current `groupBy` in redux. Will be `null` if `groupBy` is unspecified.
 
-## datagrid.controls.search : { value: string, onChange: (e: ChangeEvent) => void }
+### `datagrid.controls.search : { value: string, onChange: (e: ChangeEvent) => void }`
 
 A utility object for the search text. Can be spread onto `<input>` components to easily connect them to redux.
 
@@ -54,8 +54,8 @@ const MyDatagrid = ({ datagrid: { controls: { search }}}) => <div>
 </div>
 ```
 
-## datagrid.controls.sortBy : { value: string, onChange: (e: ChangeEvent) => void }
+### `datagrid.controls.sortBy : { value: string, onChange: (e: ChangeEvent) => void }`
 
-## datagrid.controls.groupBy : { value: string, onChange: (e: ChangeEvent) => void }
+### `datagrid.controls.groupBy : { value: string, onChange: (e: ChangeEvent) => void }`
 
-## datagrid.controls.sortDirection : { value: string, onChange: (e: ChangeEvent) => void }
+### `datagrid.controls.sortDirection : { value: string, onChange: (e: ChangeEvent) => void }`
