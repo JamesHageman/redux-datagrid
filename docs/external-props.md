@@ -7,7 +7,7 @@ When you use wrap a component with `reduxDatagrid()`, you can pass the wrapped c
 The raw data source for the datagrid. 
 
 ```js
-const data = [ { ... }, { ... }, { ... }];
+const data = [ { ... }, { ... }, { ... } ];
 
 return <MyDatagrid data={ data } />;
 ```
