@@ -28,3 +28,21 @@
 @import 'basscss-position';
 @import 'basscss-border';
 @import 'basscss-hide';
+
+pre,
+code {
+  background-color: #eee;
+  border-radius: 3px;
+}
+
+pre {
+  padding: 5px;
+}
+
+code {
+  padding: 3px;
+}
+
+pre code {
+  padding: 0;
+}

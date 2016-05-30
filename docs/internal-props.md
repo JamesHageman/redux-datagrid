@@ -1,13 +1,17 @@
 # Internal Props
 
-These props are passed to your connected datagrid to use inside its `render()` function. They are all passed under the `datagrid` namespace, so it's helpful if you desctructuring like so:
+These props are passed to your connected datagrid to use inside its `render()` function. They are all passed under the `datagrid` namespace, so it's helpful if you use desctructuring like so:
 
 ```js
-
 const MyDatagrid = ({ datagrid: { data, filtered }}) => <div>
   // ...
 </div>;
 ```
+
+### `datagrid.columns : Array<ColumnDef>`
+
+The processed columns from `reduxDatagrid()`. All string columns will be converted to proper `ColumnDef` object before being passed to your component.
+
 ### `datagrid.data : Array<any> | Immutable.List<any>`
 
 The raw data passed from the parent.
@@ -54,8 +58,8 @@ const MyDatagrid = ({ datagrid: { controls: { search }}}) => <div>
 </div>
 ```
 
+All of the following are functionally similar to `datagrid.controls.search`:
+
 ### `datagrid.controls.sortBy : { value: string, onChange: (e: ChangeEvent) => void }`
-
 ### `datagrid.controls.groupBy : { value: string, onChange: (e: ChangeEvent) => void }`
-
 ### `datagrid.controls.sortDirection : { value: string, onChange: (e: ChangeEvent) => void }`

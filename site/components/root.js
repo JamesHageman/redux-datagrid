@@ -6,7 +6,7 @@ const Root = ({ children }) => <div className="bg-white">
   <header className="p1 bg-darken-1">
     <div>
       <h1 className="inline mr1">Redux Datagrid</h1>
-      <lead>The easiest way to sort, filter and group your data</lead>
+      <lead>A Higher-Order Component for sorting, filtering and grouping</lead>
     </div>
     <nav className="clearfix">
       <div className="col-right">
@@ -16,7 +16,7 @@ const Root = ({ children }) => <div className="bg-white">
     </nav>
   </header>
   <main className="flex">
-    <nav className="bg-darken-2 p1" style={{minWidth: 140}}>
+    <nav className="bg-darken-2 p1 flex-none" style={{minWidth: 140}}>
       <Link to="/">Getting Started</Link>
       <h3>Examples</h3>
       <ul className="list-reset">
@@ -27,6 +27,7 @@ const Root = ({ children }) => <div className="bg-white">
       </ul>
       <h3>API</h3>
       <ul className="list-reset">
+        <li><Link to="/docs/reducer">Reducer</Link></li>
         <li><Link to="/docs/redux-datagrid">reduxDatagrid()</Link></li>
         <li><Link to="/docs/internal-props">Internal Props</Link></li>
         <li><Link to="/docs/external-props">External Props</Link></li>
